@@ -31,19 +31,6 @@
       
       --text-main: #F8FAFC;
       --text-muted: #94A3B8;
-
-      /* Extended shades for the interactive roadmap/rulebook — kept in the
-         same red/blue register as the palette above so both sections read
-         as one consistent theme, not two different color schemes. */
-      --spider-red: var(--spider-crimson);
-      --spider-red-light: #E23636;
-      --spider-red-dark: #7F1D1D;
-      --spider-red-glow: var(--spider-crimson-glow);
-      --spider-blue-light: #2563EB;
-      --spider-blue-dark: var(--spider-navy);
-      --spider-blue-glow: rgba(30, 58, 138, 0.35);
-      --spider-cyan-glow: rgba(0, 229, 255, 0.25);
-      --spider-gold-glow: rgba(212, 175, 55, 0.25);
     }
 
     * {
@@ -312,7 +299,7 @@
       padding: clamp(8px, 1.8vw, 14px) clamp(6px, 1.5vw, 12px);
       border-radius: 8px;
       flex: 1 1 0px;
-      min-width: 0; /* Prevents overflow/cutting on tiny mobile screens */
+      min-width: 0;
       border: 1px solid rgba(0, 229, 255, 0.15);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       position: relative;
@@ -331,7 +318,7 @@
     .time-box span {
       display: block;
       font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-      font-family: 'Share Tech Mono', monospace; /* Futuristic Business & Web HUD Font */
+      font-family: 'Share Tech Mono', monospace;
       font-weight: 700;
       line-height: 1;
       letter-spacing: 1px;
@@ -401,29 +388,11 @@
       gap: 14px;
     }
 
-    .section-title::before {
-      content: '';
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--spider-red);
-      box-shadow: 0 0 12px var(--spider-red-glow);
-      flex-shrink: 0;
-    }
-
     .section-title::after {
       content: '';
       flex: 1;
       height: 1px;
       background: linear-gradient(90deg, var(--border-crimson), transparent);
-    }
-
-    /* Roadmap heading uses a cleaner sans-serif — the decorative serif font
-       used elsewhere was hard to read at this size/spacing. */
-    #roadmap .section-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      letter-spacing: 1px;
     }
 
     /* Content Section */
@@ -454,303 +423,174 @@
       border-right: 1px solid rgba(185, 28, 28, 0.1);
     }
 
-    /* Interactive Sprint Trajectory Roadmap (timeline format) */
-    .spider-roadmap-wrapper {
-      position: relative;
-      margin: 30px 0 50px;
-      padding: clamp(16px, 3vw, 30px);
-      background: var(--bg-card);
-      border: 1px solid var(--spider-blue-dark);
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    /* 6-Stage Roadmap Grid */
+    .innovative-roadmap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
     }
 
-    .roadmap-hud-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px dashed rgba(0, 229, 255, 0.2);
-    }
-
-    .hud-title {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 13px;
-      color: var(--spider-cyan);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hud-title::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--spider-red);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--spider-red-glow);
-      animation: pulseGlow 1.5s infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      0% { opacity: 0.4; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1.3); }
-    }
-
-    .spider-node-timeline {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .spider-node-timeline::before {
-      content: '';
-      position: absolute;
-      top: 30px;
-      bottom: 30px;
-      left: 28px;
-      width: 3px;
-      background: linear-gradient(180deg, var(--spider-red) 0%, var(--spider-red-light) 40%, var(--spider-blue-light) 75%, var(--spider-gold) 100%);
-      box-shadow: 0 0 12px var(--spider-cyan-glow);
-      z-index: 1;
-    }
-
-    .spider-node-item {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      transition: transform 0.25s ease;
-    }
-
-    .node-anchor {
-      position: relative;
-      width: 58px;
-      height: 58px;
-      min-width: 58px;
-      border-radius: 50%;
-      background: var(--bg-dark);
-      border: 2px solid var(--border-active);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-      transition: all 0.25s ease;
-    }
-
-    .node-anchor::after {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      border: 1px dashed var(--spider-red);
-      animation: rotateRing 12s linear infinite;
-    }
-
-    @keyframes rotateRing {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .node-number {
-      font-family: 'Share Tech Mono', monospace;
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--spider-cyan);
-      transition: color 0.25s ease;
-    }
-
-    .node-card {
-      flex: 1;
+    .roadmap-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 18px 20px;
-      transition: all 0.25s ease;
+      padding: 20px;
       position: relative;
       overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
-    .node-card::before {
+    .roadmap-card:hover {
+      border-color: var(--spider-cyan);
+      transform: translateY(-3px);
+      background: var(--bg-card-hover);
+    }
+
+    .roadmap-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--spider-red), var(--spider-red-light) 45%, var(--spider-blue-light) 80%, var(--spider-cyan));
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--spider-crimson), var(--spider-blue));
     }
 
-    .node-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .node-stage-tag {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px;
+    .stage-num {
+      font-family: 'Cinzel', serif;
       font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      font-size: 32px;
+      color: rgba(255, 255, 255, 0.06);
+      position: absolute;
+      top: 10px;
+      right: 16px;
+    }
+
+    .stage-tag {
+      font-size: 10px;
+      font-weight: 700;
       color: var(--spider-cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      display: block;
     }
 
-    .node-duration {
-      font-size: 9px;
-      color: var(--spider-gold);
-      background: var(--spider-gold-glow);
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      font-weight: 700;
-    }
-
-    .node-card h4 {
+    .roadmap-card h4 {
       font-family: 'Syne', sans-serif;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: #ffffff;
+      margin-bottom: 8px;
     }
 
-    .spider-node-item:hover .node-anchor {
-      border-color: var(--spider-red);
-      background: rgba(185, 28, 28, 0.2);
-      box-shadow: 0 0 20px var(--spider-red-glow);
-      transform: scale(1.08);
+    .roadmap-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
-    .spider-node-item:hover .node-number {
-      color: #ffffff;
-      text-shadow: 0 0 10px var(--spider-cyan-glow);
-    }
-
-    .spider-node-item:hover .node-card {
-      background: var(--bg-card-hover);
-      border-color: var(--border-crimson);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-    }
-
-    /* Interactive Rulebook (card format) */
-    .rulebook-wrapper {
-      position: relative;
-      margin: 30px 0 50px;
-    }
-
-    .rulebook-grid {
+    /* Rulebook Section */
+    .rulebook-container {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
+      margin-bottom: 30px;
     }
 
-    .rule-card {
+    .rulebook-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
       padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      position: relative;
-      transition: all 0.25s ease;
+      border-radius: 10px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .rule-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: linear-gradient(180deg, var(--spider-red) 0%, var(--spider-red-light) 55%, var(--spider-blue-light) 100%);
-      border-radius: 12px 0 0 12px;
-    }
-
-    .rule-card:hover {
+    .rulebook-step:hover {
+      border-color: var(--spider-crimson);
       background: var(--bg-card-hover);
-      border-color: var(--spider-red);
-      box-shadow: 0 4px 18px var(--spider-red-glow), 0 4px 18px var(--spider-blue-glow);
+      transform: translateX(3px);
     }
 
-    .rule-card-main {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex: 1;
-    }
-
-    .rule-number-badge {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      background: linear-gradient(135deg, rgba(185, 28, 28, 0.3), rgba(30, 58, 138, 0.3));
+    .rulebook-badge {
+      background: rgba(185, 28, 28, 0.15);
       color: #ffffff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
       padding: 6px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--spider-red-light);
+      border-radius: 4px;
       white-space: nowrap;
-      box-shadow: 0 0 10px var(--spider-red-glow);
+      letter-spacing: 1px;
+      border: 1px solid var(--border-crimson);
     }
 
-    .rule-text-group {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .rule-title-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .rule-title {
+    .rulebook-content h4 {
       font-family: 'Syne', sans-serif;
       font-size: 15px;
       font-weight: 700;
       color: #ffffff;
+      margin-bottom: 4px;
     }
 
-    .rule-category-tag {
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--spider-gold);
-      background: var(--spider-gold-glow);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    .rule-summary {
-      font-size: 12.5px;
+    .rulebook-content p {
+      font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
-    /* Team Slider Track - GPU Hardware Accelerated */
+    /* Enhanced Interactive Team Slider Wrapper */
     .team-slider-wrapper {
-      overflow: hidden;
       position: relative;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      cursor: grab;
+      user-select: none;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
       width: 100%;
       margin-bottom: 30px;
       border-radius: 12px;
       border: 1px solid var(--border-subtle);
       background: rgba(13, 20, 34, 0.4);
       padding: 20px 0;
+    }
+
+    .team-slider-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .team-slider-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .team-slider-wrapper.user-interacting .team-slider-track {
+      animation-play-state: paused !important;
+    }
+
+    /* Dynamic Hover Zones for Scrolling */
+    .scroll-zone {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 15%;
+      z-index: 10;
+      pointer-events: auto;
+      transition: opacity 0.3s ease;
+    }
+
+    .scroll-left {
+      left: 0;
+      background: linear-gradient(90deg, rgba(7, 11, 18, 0.8), transparent);
+    }
+
+    .scroll-right {
+      right: 0;
+      background: linear-gradient(-90deg, rgba(7, 11, 18, 0.8), transparent);
     }
 
     .team-slider-track {
@@ -771,18 +611,13 @@
     }
 
     .team-card {
-      width: 190px;
-      min-height: 148px;
+      width: 170px;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 10px;
-      padding: 16px 14px;
+      padding: 16px 12px;
       text-align: center;
       flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       transition: border-color 0.25s ease;
     }
 
@@ -823,13 +658,10 @@
       display: block;
       margin-top: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
-      white-space: normal;
-      line-height: 1.4;
+      letter-spacing: 1px;
+      white-space: nowrap;
       overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
     }
 
     /* Memories Gallery Grid */
@@ -1001,8 +833,7 @@
 
     /* Mobile Adaptations */
     @media (max-width: 768px) {
-      /* Disable heavy blur filters on mobile to boost rendering speed */
-      header, .timer-container, .category-badge, .spider-roadmap-wrapper, .rule-card, .faculty-card {
+      header, .timer-container, .category-badge, .roadmap-card, .rulebook-step, .faculty-card {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
       }
@@ -1028,27 +859,9 @@
         display: flex;
       }
 
-      .spider-node-timeline::before {
-        left: 20px;
-      }
-
-      .node-anchor {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-      }
-
-      .node-number {
-        font-size: 13px;
-      }
-
-      .spider-node-item {
-        gap: 12px;
-      }
-
-      .rule-card {
+      .rulebook-step {
         flex-direction: column;
-        align-items: flex-start;
+        gap: 8px;
       }
 
       .memories-grid {
@@ -1107,7 +920,7 @@
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
           <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
         </svg>
-        MEET
+        PITCH ROOM
       </a>
     </div>
   </header>
@@ -1190,168 +1003,92 @@
         esteemed panel of investors.</p>
     </section>
 
-    <!-- Sprint Trajectory Roadmap -->
+    <!-- 6-Stage Roadmap Section -->
     <section id="roadmap">
-      <h2 class="section-title">Sprint Trajectory Roadmap</h2>
-
-      <div class="spider-roadmap-wrapper">
-        <div class="roadmap-hud-header">
-          <div class="hud-title">Sprint Protocol Engine • 50-Day Trajectory</div>
+      <h2 class="section-title">Innovative 6-Stage Roadmap</h2>
+      <div class="innovative-roadmap">
+        <div class="roadmap-card">
+          <span class="stage-num">01</span>
+          <span class="stage-tag">Stage 1</span>
+          <h4>Problem Discovery</h4>
+          <p>Identifying key industry pain points, market gap analysis, and initial problem hypothesis validation.</p>
         </div>
 
-        <div class="spider-node-timeline" id="spiderRoadmap">
+        <div class="roadmap-card">
+          <span class="stage-num">02</span>
+          <span class="stage-tag">Stage 2</span>
+          <h4>Ideation & Pitch</h4>
+          <p>Synthesizing solutions, forming cross-functional teams, and initial mentor pitch reviews.</p>
+        </div>
 
-          <!-- Node 01 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">01</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 1 • Problem Discovery</span>
-                <span class="node-duration">Days 01-08</span>
-              </div>
-              <h4>Origin: Pain-Point Discovery & Validation</h4>
-            </div>
-          </div>
+        <div class="roadmap-card">
+          <span class="stage-num">03</span>
+          <span class="stage-tag">Stage 3</span>
+          <h4>MVP Development</h4>
+          <p>Rapid prototyping, software/hardware architecture validation, and core feature sprints.</p>
+        </div>
 
-          <!-- Node 02 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">02</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 2 • Solution Architecture</span>
-                <span class="node-duration">Days 09–18</span>
-              </div>
-              <h4>Ideation & Pitch Architecture</h4>
-            </div>
-          </div>
+        <div class="roadmap-card">
+          <span class="stage-num">04</span>
+          <span class="stage-tag">Stage 4</span>
+          <h4>Business Model</h4>
+          <p>Unit economics formulation, monetization strategies, and go-to-market plan design.</p>
+        </div>
 
-          <!-- Node 03 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">03</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 3 • Rapid Prototyping</span>
-                <span class="node-duration">Days 19–30</span>
-              </div>
-              <h4>MVP Lab & Hardware Prototyping</h4>
-            </div>
-          </div>
+        <div class="roadmap-card">
+          <span class="stage-num">05</span>
+          <span class="stage-tag">Stage 5</span>
+          <h4>Investor Deck</h4>
+          <p>Refining high-impact pitch decks, financial projection modeling, and live mock pitches.</p>
+        </div>
 
-          <!-- Node 04 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">04</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 4 • Financial Modeling</span>
-                <span class="node-duration">Days 31–38</span>
-              </div>
-              <h4>Business Mechanics & Go-To-Market</h4>
-            </div>
-          </div>
-
-          <!-- Node 05 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">05</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 5 • Investor Readiness</span>
-                <span class="node-duration">Days 39–46</span>
-              </div>
-              <h4>Pitch Deck Refinement & Dry Runs</h4>
-            </div>
-          </div>
-
-          <!-- Node 06 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">06</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 6 • Pitch Arena</span>
-                <span class="node-duration">Days 47–50</span>
-              </div>
-              <h4>Grand Pitch Day Showcase</h4>
-            </div>
-          </div>
-
+        <div class="roadmap-card">
+          <span class="stage-num">06</span>
+          <span class="stage-tag">Stage 6</span>
+          <h4>Grand Pitch Day</h4>
+          <p>Live startup showcase before angel networks, venture capitalists, and industry leaders.</p>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Rulebook -->
+    <!-- Rulebook Section -->
     <section id="rulebook">
       <h2 class="section-title">Event Rulebook</h2>
-
-      <div class="rulebook-wrapper">
-        <div class="rulebook-grid" id="ruleGrid">
-
-          <!-- Rule 01 -->
-          <div class="rule-card">
-            <div class="rule-card-main">
-              <span class="rule-number-badge">RULE 01</span>
-              <div class="rule-text-group">
-                <div class="rule-title-row">
-                  <h3 class="rule-title">Team Formation & Structure</h3>
-                  <span class="rule-category-tag">Eligibility</span>
-                </div>
-                <p class="rule-summary">Teams must consist of 2–5 enrolled undergraduate/postgraduate members with a designated team leader. Interdisciplinary collaboration is strongly encouraged.</p>
-              </div>
-            </div>
+      <div class="rulebook-container">
+        <div class="rulebook-step">
+          <div class="rulebook-badge">Rule 01 • Eligibility</div>
+          <div class="rulebook-content">
+            <h4>Team Formation & Size</h4>
+            <p>Teams must consist of 2 to 5 members. Interdisciplinary collaboration across departments is strongly
+              encouraged.</p>
           </div>
+        </div>
 
-          <!-- Rule 02 -->
-          <div class="rule-card">
-            <div class="rule-card-main">
-              <span class="rule-number-badge">RULE 02</span>
-              <div class="rule-text-group">
-                <div class="rule-title-row">
-                  <h3 class="rule-title">Originality & IP Protection</h3>
-                  <span class="rule-category-tag">IP Rights</span>
-                </div>
-                <p class="rule-summary">All solutions must be original work. Teams retain 100% ownership of their IP; any open-source resources used must be explicitly credited.</p>
-              </div>
-            </div>
+        <div class="rulebook-step">
+          <div class="rulebook-badge">Rule 02 • Originality</div>
+          <div class="rulebook-content">
+            <h4>IP & Solution Novelty</h4>
+            <p>All submitted solutions must be original work. Existing prototypes must explicitly state previous
+              development milestones.</p>
           </div>
+        </div>
 
-          <!-- Rule 03 -->
-          <div class="rule-card">
-            <div class="rule-card-main">
-              <span class="rule-number-badge">RULE 03</span>
-              <div class="rule-text-group">
-                <div class="rule-title-row">
-                  <h3 class="rule-title">Mandatory Sprint Check-ins</h3>
-                  <span class="rule-category-tag">Cohort</span>
-                </div>
-                <p class="rule-summary">80%+ attendance in weekly mentor syncs and milestone filing is mandatory to remain eligible for the Grand Pitch Day.</p>
-              </div>
-            </div>
+        <div class="rulebook-step">
+          <div class="rulebook-badge">Rule 03 • Mentorship</div>
+          <div class="rulebook-content">
+            <h4>Mandatory Check-ins</h4>
+            <p>Each team must complete weekly progression check-ins with their assigned domain mentor throughout the 50
+              days.</p>
           </div>
+        </div>
 
-          <!-- Rule 04 -->
-          <div class="rule-card">
-            <div class="rule-card-main">
-              <span class="rule-number-badge">RULE 04</span>
-              <div class="rule-text-group">
-                <div class="rule-title-row">
-                  <h3 class="rule-title">Demo Day Pitching Rules</h3>
-                  <span class="rule-category-tag">Grand Finale</span>
-                </div>
-                <p class="rule-summary">Strictly timed 5-minute live pitch, followed by a 3-minute investor Q&A with a live working prototype demonstration.</p>
-              </div>
-            </div>
+        <div class="rulebook-step">
+          <div class="rulebook-badge">Rule 04 • Finale</div>
+          <div class="rulebook-content">
+            <h4>Demo Day Presentation</h4>
+            <p>Pitching teams will be allocated 5 minutes for live presentation followed by 3 minutes of investor Q&A.
+            </p>
           </div>
-
         </div>
       </div>
     </section>
@@ -1359,51 +1096,55 @@
     <!-- Organizing Team Section -->
     <section id="team">
       <h2 class="section-title">Our Organizing Team</h2>
-      <div class="team-slider-wrapper">
-        <div class="team-slider-track">
+      <div class="team-slider-wrapper" id="teamSliderWrapper">
+        <!-- Scroll Indicators / Edge Hover Zones -->
+        <div class="scroll-zone scroll-left" id="scrollLeft"></div>
+        <div class="scroll-zone scroll-right" id="scrollRight"></div>
+
+        <div class="team-slider-track" id="teamSliderTrack">
           <!-- Profiles -->
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devang</h4><span>Lead Coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">P</div><h4>Parth</h4><span>Tech Head</span></div>
-          <div class="team-card"><div class="team-avatar">K</div><h4>Krisha</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devanshi</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">B</div><h4>Bhavya</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">R</div><h4>Ronak</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">Y</div><h4>Yesha</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Drashti</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mrunal</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jalpit</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Manthan</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neel</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Meet</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">T</div><h4>Tisha</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Maitri</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">A</div><h4>Akshat</h4><span>Event Manager</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jay Nirmal</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neetika</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mohammad</h4><span>Joint Co-coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Durva</h4><span>Joint Coordinator</span></div>
+          <div class="team-card"><div class="team-avatar">A</div><h4>Alex Mercer</h4><span>Lead Coordinator</span></div>
+          <div class="team-card"><div class="team-avatar">R</div><h4>Riya Sharma</h4><span>Tech Head</span></div>
+          <div class="team-card"><div class="team-avatar">K</div><h4>Karan Patel</h4><span>Operations Lead</span></div>
+          <div class="team-card"><div class="team-avatar">S</div><h4>Sneha Verma</h4><span>Venture Liaison</span></div>
+          <div class="team-card"><div class="team-avatar">D</div><h4>Dev Mehta</h4><span>Design Strategist</span></div>
+          <div class="team-card"><div class="team-avatar">P</div><h4>Priya Shah</h4><span>Finance Lead</span></div>
+          <div class="team-card"><div class="team-avatar">A</div><h4>Ansh Joshi</h4><span>Sponsorship Head</span></div>
+          <div class="team-card"><div class="team-avatar">T</div><h4>Tanya Roy</h4><span>PR & Media</span></div>
+          <div class="team-card"><div class="team-avatar">V</div><h4>Vikram Desai</h4><span>Logistics Lead</span></div>
+          <div class="team-card"><div class="team-avatar">I</div><h4>Isha Kapoor</h4><span>Event Anchor</span></div>
+          <div class="team-card"><div class="team-avatar">R</div><h4>Rohan Trivedi</h4><span>Web Developer</span></div>
+          <div class="team-card"><div class="team-avatar">M</div><h4>Meera Nair</h4><span>Marketing Lead</span></div>
+          <div class="team-card"><div class="team-avatar">K</div><h4>Kabir Singh</h4><span>Security Lead</span></div>
+          <div class="team-card"><div class="team-avatar">N</div><h4>Neha Rajput</h4><span>Judge Coordinator</span></div>
+          <div class="team-card"><div class="team-avatar">A</div><h4>Aarav Solanki</h4><span>Tech Support</span></div>
+          <div class="team-card"><div class="team-avatar">D</div><h4>Divya Parmar</h4><span>Registration Head</span></div>
+          <div class="team-card"><div class="team-avatar">S</div><h4>Siddharth Rao</h4><span>Content Lead</span></div>
+          <div class="team-card"><div class="team-avatar">K</div><h4>Kavya Bhatt</h4><span>Hospitality Lead</span></div>
+          <div class="team-card"><div class="team-avatar">Y</div><h4>Yash Vyas</h4><span>Video Editor</span></div>
+          <div class="team-card"><div class="team-avatar">Z</div><h4>Zoya Khan</h4><span>Mentor Manager</span></div>
 
           <!-- DUPLICATED FOR INFINITE SCROLL LOOP -->
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devang</h4><span>Lead Coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">P</div><h4>Parth</h4><span>Tech Head</span></div>
-          <div class="team-card"><div class="team-avatar">K</div><h4>Krisha</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devanshi</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">B</div><h4>Bhavya</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">R</div><h4>Ronak</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">Y</div><h4>Yesha</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Drashti</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mrunal</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jalpit</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Manthan</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neel</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Meet</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">T</div><h4>Tisha</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Maitri</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">A</div><h4>Akshat</h4><span>Event Manager</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jay Nirmal</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neetika</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mohammad</h4><span>Joint Co-coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Durva</h4><span>Joint Coordinator</span></div>
+          <div class="team-card"><div class="team-avatar">A</div><h4>Alex Mercer</h4><span>Lead Coordinator</span></div>
+          <div class="team-card"><div class="team-avatar">R</div><h4>Riya Sharma</h4><span>Tech Head</span></div>
+          <div class="team-card"><div class="team-avatar">K</div><h4>Karan Patel</h4><span>Operations Lead</span></div>
+          <div class="team-card"><div class="team-avatar">S</div><h4>Sneha Verma</h4><span>Venture Liaison</span></div>
+          <div class="team-card"><div class="team-avatar">D</div><h4>Dev Mehta</h4><span>Design Strategist</span></div>
+          <div class="team-card"><div class="team-avatar">P</div><h4>Priya Shah</h4><span>Finance Lead</span></div>
+          <div class="team-card"><div class="team-avatar">A</div><h4>Ansh Joshi</h4><span>Sponsorship Head</span></div>
+          <div class="team-card"><div class="team-avatar">T</div><h4>Tanya Roy</h4><span>PR & Media</span></div>
+          <div class="team-card"><div class="team-avatar">V</div><h4>Vikram Desai</h4><span>Logistics Lead</span></div>
+          <div class="team-card"><div class="team-avatar">I</div><h4>Isha Kapoor</h4><span>Event Anchor</span></div>
+          <div class="team-card"><div class="team-avatar">R</div><h4>Rohan Trivedi</h4><span>Web Developer</span></div>
+          <div class="team-card"><div class="team-avatar">M</div><h4>Meera Nair</h4><span>Marketing Lead</span></div>
+          <div class="team-card"><div class="team-avatar">K</div><h4>Kabir Singh</h4><span>Security Lead</span></div>
+          <div class="team-card"><div class="team-avatar">N</div><h4>Neha Rajput</h4><span>Judge Coordinator</span></div>
+          <div class="team-card"><div class="team-avatar">A</div><h4>Aarav Solanki</h4><span>Tech Support</span></div>
+          <div class="team-card"><div class="team-avatar">D</div><h4>Divya Parmar</h4><span>Registration Head</span></div>
+          <div class="team-card"><div class="team-avatar">S</div><h4>Siddharth Rao</h4><span>Content Lead</span></div>
+          <div class="team-card"><div class="team-avatar">K</div><h4>Kavya Bhatt</h4><span>Hospitality Lead</span></div>
+          <div class="team-card"><div class="team-avatar">Y</div><h4>Yash Vyas</h4><span>Video Editor</span></div>
+          <div class="team-card"><div class="team-avatar">Z</div><h4>Zoya Khan</h4><span>Mentor Manager</span></div>
         </div>
       </div>
     </section>
@@ -1498,10 +1239,6 @@
       <a href="https://www.instagram.com/buzz.tech2026/" target="_blank" class="social-icon" aria-label="BuzzTech Instagram">
         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
       </a>
-      <!-- TODO: replace with the real BuzzTech WhatsApp community invite link -->
-      <a href="https://chat.whatsapp.com/YOUR_COMMUNITY_INVITE_CODE" target="_blank" class="social-icon" aria-label="BuzzTech WhatsApp Community">
-        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.27 4.9L2 22l5.25-1.38a9.96 9.96 0 0 0 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.84-10.01-9.84zm5.87 14.14c-.25.7-1.45 1.33-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.63-2.96-1.28-4.89-4.26-5.04-4.46-.15-.2-1.21-1.61-1.21-3.07s.77-2.18 1.04-2.48c.27-.3.6-.37.8-.37.2 0 .4.002.57.01.19.01.43-.07.68.51.25.6.85 2.07.92 2.22.07.15.12.33.02.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.05 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.13.65-.08.17-.2.74-.87.94-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.08.13.08.75-.17 1.45z"/></svg>
-      </a>
     </div>
 
     <div class="support-box">
@@ -1550,6 +1287,71 @@
       });
     }
 
+    // --- TEAM SLIDER HOVER & TOUCH SCROLL ENGINE ---
+    const sliderWrapper = document.getElementById('teamSliderWrapper');
+    const scrollLeftZone = document.getElementById('scrollLeft');
+    const scrollRightZone = document.getElementById('scrollRight');
+
+    let hoverScrollInterval = null;
+    let isMouseDown = false;
+    let startX, scrollLeft;
+
+    // Hover Scrolling Controls
+    function startHoverScroll(direction) {
+      sliderWrapper.classList.add('user-interacting');
+      clearInterval(hoverScrollInterval);
+      
+      hoverScrollInterval = setInterval(() => {
+        sliderWrapper.scrollLeft += direction * 8;
+      }, 16);
+    }
+
+    function stopHoverScroll() {
+      clearInterval(hoverScrollInterval);
+      sliderWrapper.classList.remove('user-interacting');
+    }
+
+    scrollLeftZone.addEventListener('mouseenter', () => startHoverScroll(-1));
+    scrollLeftZone.addEventListener('mouseleave', stopHoverScroll);
+
+    scrollRightZone.addEventListener('mouseenter', () => startHoverScroll(1));
+    scrollRightZone.addEventListener('mouseleave', stopHoverScroll);
+
+    // Mouse Drag Scrolling
+    sliderWrapper.addEventListener('mousedown', (e) => {
+      isMouseDown = true;
+      sliderWrapper.classList.add('user-interacting');
+      startX = e.pageX - sliderWrapper.offsetLeft;
+      scrollLeft = sliderWrapper.scrollLeft;
+    });
+
+    sliderWrapper.addEventListener('mouseleave', () => {
+      isMouseDown = false;
+      sliderWrapper.classList.remove('user-interacting');
+    });
+
+    sliderWrapper.addEventListener('mouseup', () => {
+      isMouseDown = false;
+      sliderWrapper.classList.remove('user-interacting');
+    });
+
+    sliderWrapper.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      e.preventDefault();
+      const x = e.pageX - sliderWrapper.offsetLeft;
+      const walk = (x - startX) * 2;
+      sliderWrapper.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch Support for Mobile
+    sliderWrapper.addEventListener('touchstart', () => {
+      sliderWrapper.classList.add('user-interacting');
+    }, { passive: true });
+
+    sliderWrapper.addEventListener('touchend', () => {
+      sliderWrapper.classList.remove('user-interacting');
+    }, { passive: true });
+
     // Performance Optimized Cyber Web-Lattice Canvas Engine
     const canvas = document.getElementById('webCanvas');
     const ctx = canvas.getContext('2d', { alpha: true });
@@ -1558,26 +1360,22 @@
     let webNodes = [];
     let pointer = { x: -1000, y: -1000, lastX: null, lastY: null };
 
-    // Device performance detection
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-    const MAX_LIFE = isMobile ? 700 : 950;
-    const STEP_PX = isMobile ? 12 : 8;
-    const MAX_DIST = isMobile ? 110 : 140;
-    const MAX_NODES = isMobile ? 45 : 85; // Increased for a more visible web-shoot effect
+    const MAX_LIFE = isMobile ? 600 : 850;
+    const STEP_PX = isMobile ? 16 : 10;
+    const MAX_DIST = isMobile ? 100 : 130;
+    const MAX_NODES = isMobile ? 35 : 70;
 
-    // Weighted toward red + blue (the theme's core contrast), cyan/white only as light accents
     const COLORS = [
       { r: 185, g: 28, b: 28 },   /* Crimson */
-      { r: 185, g: 28, b: 28 },   /* Crimson (weighted) */
-      { r: 30, g: 58, b: 138 },   /* Navy Blue */
-      { r: 30, g: 58, b: 138 },   /* Navy Blue (weighted) */
-      { r: 0, g: 229, b: 255 },   /* Cyan accent */
-      { r: 226, g: 232, b: 240 }  /* Soft off-white, not pure white */
+      { r: 30, g: 58, b: 138 },   /* Navy */
+      { r: 0, g: 229, b: 255 },   /* Cyan */
+      { r: 248, g: 250, b: 252 }  /* White */
     ];
 
     function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2 for performance
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width * dpr;
@@ -1603,7 +1401,7 @@
       const dy = y - pointer.lastY;
       const dist = Math.hypot(dx, dy);
 
-      if (dist < STEP_PX) return; // Throttles event spam
+      if (dist < STEP_PX) return;
 
       const steps = Math.min(3, Math.max(1, Math.floor(dist / STEP_PX)));
 
@@ -1620,7 +1418,7 @@
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
           t: now,
-          baseRadius: 1.6 + Math.random() * 1.6,
+          baseRadius: 1.5 + Math.random() * 1.5,
           color
         });
       }
@@ -1641,45 +1439,6 @@
       if (e.touches.length > 0) {
         createWebParticles(e.touches[0].clientX, e.touches[0].clientY);
       }
-    }, { passive: true });
-
-    // Directional scroll "web-shoot" effect: fires a single thread of webbing
-    // downward when scrolling down, upward when scrolling up. One particle
-    // per tick — successive scroll ticks chain into a single line, not a burst.
-    let lastScrollY = window.scrollY;
-    let scrollTicking = false;
-
-    window.addEventListener('scroll', () => {
-      if (scrollTicking) return;
-      scrollTicking = true;
-
-      requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        const deltaY = currentScrollY - lastScrollY;
-        lastScrollY = currentScrollY;
-        scrollTicking = false;
-
-        if (Math.abs(deltaY) < 2) return; // ignore tiny scroll jitter
-
-        const direction = deltaY > 0 ? 1 : -1; // 1 = scrolling down, -1 = scrolling up
-        const anchorX = pointer.x > 0 ? pointer.x : width / 2;
-        const anchorY = pointer.y > 0 ? pointer.y : height / 2;
-
-        const color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        webNodes.push({
-          x: anchorX + (Math.random() - 0.5) * 6,
-          y: anchorY,
-          vx: (Math.random() - 0.5) * 0.15,
-          vy: direction * (1.3 + Math.random() * 0.6), // shoots the same way as scroll
-          t: performance.now(),
-          baseRadius: 1.2 + Math.random() * 0.8,
-          color
-        });
-
-        if (webNodes.length > MAX_NODES) {
-          webNodes.splice(0, webNodes.length - MAX_NODES);
-        }
-      });
     }, { passive: true });
 
     let lastFrameTime = performance.now();
@@ -1707,9 +1466,9 @@
           if (dist < MAX_DIST) {
             const age1 = now - n1.t;
             const lifeRatio = 1 - age1 / MAX_LIFE;
-            const alpha = (1 - dist / MAX_DIST) * lifeRatio * 0.5;
+            const alpha = (1 - dist / MAX_DIST) * lifeRatio * 0.4;
 
-            ctx.lineWidth = (1 - dist / MAX_DIST) * 1.4;
+            ctx.lineWidth = (1 - dist / MAX_DIST) * 1.1;
             const c = n1.color;
             ctx.strokeStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
 
@@ -1729,7 +1488,7 @@
 
         const age = now - p.t;
         const lifeRatio = 1 - age / MAX_LIFE;
-        const alpha = lifeRatio * 0.75;
+        const alpha = lifeRatio * 0.8;
 
         const c = p.color;
         ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
