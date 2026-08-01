@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BuzzTech 2.0 | SVIT Vasad Flagship Venture & Startup Summit</title>
 
-  <!-- Premium Fonts: Cinzel for headers, Syne & Inter for UI, Share Tech Mono for Spider-Tech Timer -->
+  <!-- Barlow for everything; Bangers reserved for large titles only -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Syne:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Bangers&display=swap"
     rel="stylesheet">
 
   <style>
@@ -61,7 +61,7 @@
     body {
       width: 100%;
       min-height: 100vh;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Barlow', sans-serif;
       color: var(--text-main);
       overflow-x: hidden;
       background-color: var(--bg-dark);
@@ -126,8 +126,8 @@
     }
 
     .logo {
-      font-family: 'Cinzel', serif;
-      font-weight: 800;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
       font-size: clamp(16px, 2vw, 22px);
       letter-spacing: 1px;
       color: #ffffff;
@@ -184,7 +184,7 @@
       color: #ffffff !important;
       padding: 8px 16px;
       border-radius: 6px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-weight: 700 !important;
       font-size: 11px !important;
       letter-spacing: 1.5px !important;
@@ -247,8 +247,8 @@
     }
 
     .article-header h1 {
-      font-family: 'Cinzel', serif;
-      font-weight: 800;
+      font-family: 'Bangers', cursive;
+      font-weight: 700;
       font-size: clamp(28px, 5vw, 56px);
       letter-spacing: 1px;
       line-height: 1.15;
@@ -353,7 +353,7 @@
       position: relative;
       z-index: 2;
       margin: 0 0 20px 0;
-      font-family: 'Cinzel', serif;
+      font-family: 'Bangers', cursive;
       font-size: clamp(1rem, 2.5vw, 1.3rem);
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -448,7 +448,7 @@
     .time-box span {
       display: block;
       font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Barlow', sans-serif;
       /* Futuristic Business & Web HUD Font */
       font-weight: 700;
       line-height: 1;
@@ -499,7 +499,7 @@
     }
 
     .sponsor-item {
-      font-family: 'Cinzel', serif;
+      font-family: 'Barlow', sans-serif;
       font-weight: 700;
       font-size: 13px;
       letter-spacing: 1.5px;
@@ -511,7 +511,7 @@
 
     /* Section Headers */
     .section-title {
-      font-family: 'Cinzel', serif;
+      font-family: 'Bangers', cursive;
       font-size: clamp(20px, 3vw, 30px);
       letter-spacing: 2px;
       margin: clamp(32px, 5vw, 50px) 0 clamp(16px, 2.5vw, 24px);
@@ -542,9 +542,10 @@
     /* Roadmap heading uses a cleaner sans-serif — the decorative serif font
        used elsewhere was hard to read at this size/spacing. */
     #roadmap .section-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Bangers', cursive;
       font-weight: 800;
-      letter-spacing: 1px;
+      font-size: clamp(24px, 3.6vw, 34px);
+      letter-spacing: 0.5px;
     }
 
     /* Content Section */
@@ -565,7 +566,7 @@
       padding: clamp(14px, 2.5vw, 22px);
       border-radius: 0 8px 8px 0;
       margin: 24px 0;
-      font-family: 'Cinzel', serif;
+      font-family: 'Barlow', sans-serif;
       font-weight: 600;
       font-size: clamp(14px, 1.8vw, 17px);
       line-height: 1.6;
@@ -600,7 +601,7 @@
     }
 
     .hud-title {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Barlow', sans-serif;
       font-size: 13px;
       color: var(--spider-cyan);
       letter-spacing: 2px;
@@ -695,7 +696,7 @@
     }
 
     .node-number {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Barlow', sans-serif;
       font-weight: 700;
       font-size: 16px;
       color: var(--spider-cyan);
@@ -732,29 +733,32 @@
     }
 
     .node-stage-tag {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--spider-cyan);
+      opacity: 0.85;
     }
 
     .node-duration {
-      font-size: 9px;
+      font-size: 10px;
       color: var(--spider-gold);
       background: var(--spider-gold-glow);
-      padding: 3px 8px;
+      padding: 3px 6px;
       border-radius: 4px;
       border: 1px solid rgba(212, 175, 55, 0.3);
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .node-card h4 {
-      font-family: 'Syne', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
+      font-family: 'Barlow', sans-serif;
+      font-size: clamp(10px, 2.4vw, 15px);
+      font-weight: 500;
       color: #ffffff;
+      margin-top: 4px;
+      line-height: 1.25;
     }
 
     .spider-node-item:hover .node-anchor {
@@ -825,8 +829,8 @@
     }
 
     .rule-number-badge {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
       font-weight: 700;
       background: linear-gradient(135deg, rgba(185, 28, 28, 0.3), rgba(30, 58, 138, 0.3));
       color: #ffffff;
@@ -851,15 +855,15 @@
     }
 
     .rule-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 15px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 17px;
       font-weight: 700;
       color: #ffffff;
     }
 
     .rule-category-tag {
       font-size: 9px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--spider-gold);
@@ -869,7 +873,7 @@
     }
 
     .rule-summary {
-      font-size: 12.5px;
+      font-size: 14px;
       color: var(--text-muted);
       line-height: 1.4;
     }
@@ -989,15 +993,15 @@
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, var(--spider-navy), var(--spider-crimson));
-      font-family: 'Cinzel', serif;
+      font-family: 'Barlow', sans-serif;
       font-weight: 700;
       font-size: 20px;
       color: #fff;
     }
 
     .team-card h4 {
-      font-family: 'Syne', sans-serif;
-      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 3px;
@@ -1023,8 +1027,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
+      width: 27px;
+      height: 27px;
       margin-top: 10px;
       border-radius: 50%;
       border: 1px solid var(--border-active);
@@ -1041,8 +1045,8 @@
     }
 
     .team-linkedin svg {
-      width: 11px;
-      height: 11px;
+      width: 15px;
+      height: 15px;
     }
 
     /* Memories Gallery Grid */
@@ -1566,7 +1570,7 @@
             </div>
             <h4>Devang</h4>
             <span class="team-role">Lead Coordinator</span>
-            <a href="https://linkedin.com/in/devang" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/devang-b-325567224?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Devang LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1580,7 +1584,7 @@
             </div>
             <h4>Parth</h4>
             <span class="team-role">Tech Head</span>
-            <a href="https://linkedin.com/in/parth" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/parth-gohil-5603b3223?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Parth LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1594,7 +1598,7 @@
             </div>
             <h4>Krisha</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/krisha" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/krisha-chang-35b7793a5?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Krisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1608,7 +1612,7 @@
             </div>
             <h4>Devanshi</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/devanshi" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/devanshi-chaudhary" target="_blank" class="team-linkedin"
               aria-label="Devanshi LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1622,7 +1626,7 @@
             </div>
             <h4>Bhavya</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/bhavya" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/bhavya-hundlani-70a42838a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Bhavya LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1636,7 +1640,7 @@
             </div>
             <h4>Ronak</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/ronak" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/ronak-kharwa?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Ronak LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1650,7 +1654,7 @@
             </div>
             <h4>Yesha</h4>
             <span class="team-role">Documentation & Assistance</span>
-            <a href="https://linkedin.com/in/yesha" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/yesha-patel-68351037a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Yesha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1664,7 +1668,7 @@
             </div>
             <h4>Drashti</h4>
             <span class="team-role">Documentation & Assistance</span>
-            <a href="https://linkedin.com/in/drashti" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/drashti-shah-b492a8330/" target="_blank" class="team-linkedin"
               aria-label="Drashti LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1678,7 +1682,7 @@
             </div>
             <h4>Mrunal</h4>
             <span class="team-role">Website Team</span>
-            <a href="https://linkedin.com/in/mrunal" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/mrunal-parikh-a0574624a/" target="_blank" class="team-linkedin"
               aria-label="Mrunal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1692,7 +1696,7 @@
             </div>
             <h4>Jalpit</h4>
             <span class="team-role">Website Team</span>
-            <a href="https://linkedin.com/in/jalpit" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/jalpit-patel-79897630a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Jalpit LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1706,7 +1710,7 @@
             </div>
             <h4>Manthan</h4>
             <span class="team-role">SMM Team</span>
-            <a href="https://linkedin.com/in/manthan" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/manthan-dhudashia-3b7bb6317?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="team-linkedin"
               aria-label="Manthan LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1720,7 +1724,7 @@
             </div>
             <h4>Neel</h4>
             <span class="team-role">SMM Team</span>
-            <a href="https://linkedin.com/in/neel" target="_blank" class="team-linkedin" aria-label="Neel LinkedIn"><svg
+            <a href="https://www.linkedin.com/in/neel-patel-886bb7317?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="team-linkedin" aria-label="Neel LinkedIn"><svg
                 viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1748,7 +1752,7 @@
             </div>
             <h4>Tisha</h4>
             <span class="team-role">Finance</span>
-            <a href="https://linkedin.com/in/tisha" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/tisha-soni-801006306?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1762,7 +1766,7 @@
             </div>
             <h4>Maitri</h4>
             <span class="team-role">Finance</span>
-            <a href="https://linkedin.com/in/maitri" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/maitri-chavan-3a2063319?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Maitri LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1776,7 +1780,7 @@
             </div>
             <h4>Akshat</h4>
             <span class="team-role">Event Manager</span>
-            <a href="https://linkedin.com/in/akshat" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/akshat-tiwari-238b68295?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Akshat LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1790,7 +1794,7 @@
             </div>
             <h4>Jay Nirmal</h4>
             <span class="team-role">Designer</span>
-            <a href="https://linkedin.com/in/jay-nirmal" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/jay-nirmal-2b576223b?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="team-linkedin"
               aria-label="Jay Nirmal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1804,7 +1808,7 @@
             </div>
             <h4>Neetika</h4>
             <span class="team-role">Designer</span>
-            <a href="https://linkedin.com/in/neetika" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/neetika-aheer-1982b9289?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Neetika LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1812,14 +1816,14 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/mohammad.jpg" alt="Mohammad" class="team-photo"
+              <img src="assets/team/mohammad.jpg" alt="Mohammed" class="team-photo"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
-            <h4>Mohammad</h4>
+            <h4>Mohammed</h4>
             <span class="team-role">Joint Co-coordinator</span>
-            <a href="https://linkedin.com/in/mohammad" target="_blank" class="team-linkedin"
-              aria-label="Mohammad LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://www.linkedin.com/in/mohammed-songadhwala-508568268?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
+              aria-label="Mohammed LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg></a>
@@ -1832,7 +1836,7 @@
             </div>
             <h4>Durva</h4>
             <span class="team-role">Joint Coordinator</span>
-            <a href="https://linkedin.com/in/durva" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/durva-mehta-07126235b/" target="_blank" class="team-linkedin"
               aria-label="Durva LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1847,7 +1851,7 @@
             </div>
             <h4>Devang</h4>
             <span class="team-role">Lead Coordinator</span>
-            <a href="https://linkedin.com/in/devang" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/devang-b-325567224?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Devang LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1861,7 +1865,7 @@
             </div>
             <h4>Parth</h4>
             <span class="team-role">Tech Head</span>
-            <a href="https://linkedin.com/in/parth" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/parth-gohil-5603b3223?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Parth LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1875,7 +1879,7 @@
             </div>
             <h4>Krisha</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/krisha" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/krisha-chang-35b7793a5?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Krisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1889,7 +1893,7 @@
             </div>
             <h4>Devanshi</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/devanshi" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/devanshi-chaudhary" target="_blank" class="team-linkedin"
               aria-label="Devanshi LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1903,7 +1907,7 @@
             </div>
             <h4>Bhavya</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/bhavya" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/bhavya-hundlani-70a42838a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Bhavya LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1917,7 +1921,7 @@
             </div>
             <h4>Ronak</h4>
             <span class="team-role">Engagement & Hospitality</span>
-            <a href="https://linkedin.com/in/ronak" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/ronak-kharwa?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Ronak LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1931,7 +1935,7 @@
             </div>
             <h4>Yesha</h4>
             <span class="team-role">Documentation & Assistance</span>
-            <a href="https://linkedin.com/in/yesha" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/yesha-patel-68351037a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Yesha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1945,7 +1949,7 @@
             </div>
             <h4>Drashti</h4>
             <span class="team-role">Documentation & Assistance</span>
-            <a href="https://linkedin.com/in/drashti" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/drashti-shah-b492a8330/"target="_blank" class="team-linkedin"
               aria-label="Drashti LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1959,7 +1963,7 @@
             </div>
             <h4>Mrunal</h4>
             <span class="team-role">Website Team</span>
-            <a href="https://linkedin.com/in/mrunal" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/mrunal-parikh-a0574624a/" target="_blank" class="team-linkedin"
               aria-label="Mrunal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1973,7 +1977,7 @@
             </div>
             <h4>Jalpit</h4>
             <span class="team-role">Website Team</span>
-            <a href="https://linkedin.com/in/jalpit" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/jalpit-patel-79897630a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Jalpit LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -1987,7 +1991,7 @@
             </div>
             <h4>Manthan</h4>
             <span class="team-role">SMM Team</span>
-            <a href="https://linkedin.com/in/manthan" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/manthan-dhudashia-3b7bb6317?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="team-linkedin"
               aria-label="Manthan LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -2001,7 +2005,7 @@
             </div>
             <h4>Neel</h4>
             <span class="team-role">SMM Team</span>
-            <a href="https://linkedin.com/in/neel" target="_blank" class="team-linkedin" aria-label="Neel LinkedIn"><svg
+            <a href="https://www.linkedin.com/in/neel-patel-886bb7317?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="team-linkedin" aria-label="Neel LinkedIn"><svg
                 viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -2029,7 +2033,7 @@
             </div>
             <h4>Tisha</h4>
             <span class="team-role">Finance</span>
-            <a href="https://linkedin.com/in/tisha" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/tisha-soni-801006306?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -2043,7 +2047,7 @@
             </div>
             <h4>Maitri</h4>
             <span class="team-role">Finance</span>
-            <a href="https://linkedin.com/in/maitri" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/maitri-chavan-3a2063319?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Maitri LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -2057,7 +2061,7 @@
             </div>
             <h4>Akshat</h4>
             <span class="team-role">Event Manager</span>
-            <a href="https://linkedin.com/in/akshat" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/akshat-tiwari-238b68295?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Akshat LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -2071,7 +2075,7 @@
             </div>
             <h4>Jay Nirmal</h4>
             <span class="team-role">Designer</span>
-            <a href="https://linkedin.com/in/jay-nirmal" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/jay-nirmal-2b576223b?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="team-linkedin"
               aria-label="Jay Nirmal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -2085,7 +2089,7 @@
             </div>
             <h4>Neetika</h4>
             <span class="team-role">Designer</span>
-            <a href="https://linkedin.com/in/neetika" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/neetika-aheer-1982b9289?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
               aria-label="Neetika LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -2093,14 +2097,14 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/mohammad.jpg" alt="Mohammad" class="team-photo"
+              <img src="assets/team/mohammad.jpg" alt="Mohammed" class="team-photo"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
-            <h4>Mohammad</h4>
+            <h4>Mohammed</h4>
             <span class="team-role">Joint Co-coordinator</span>
-            <a href="https://linkedin.com/in/mohammad" target="_blank" class="team-linkedin"
-              aria-label="Mohammad LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://www.linkedin.com/in/mohammed-songadhwala-508568268?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="team-linkedin"
+              aria-label="Mohammed LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg></a>
@@ -2113,7 +2117,7 @@
             </div>
             <h4>Durva</h4>
             <span class="team-role">Joint Coordinator</span>
-            <a href="https://linkedin.com/in/durva" target="_blank" class="team-linkedin"
+            <a href="https://www.linkedin.com/in/durva-mehta-07126235b/" target="_blank" class="team-linkedin"
               aria-label="Durva LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
