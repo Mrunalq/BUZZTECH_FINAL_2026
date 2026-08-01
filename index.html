@@ -5,30 +5,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BuzzTech 2026 | SVIT Vasad Flagship Venture & Startup Summit</title>
-  
+
   <!-- Premium Fonts: Cinzel for headers, Syne & Inter for UI, Share Tech Mono for Spider-Tech Timer -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
   <style>
     :root {
       /* Corporate Spider-Man Executive Palette */
       --bg-dark: #070B12;
       --bg-card: rgba(13, 20, 34, 0.7);
       --bg-card-hover: rgba(22, 33, 54, 0.85);
-      
+
       --spider-crimson: #B91C1C;
       --spider-crimson-glow: rgba(185, 28, 28, 0.4);
       --spider-navy: #0F172A;
       --spider-blue: #1E3A8A;
       --spider-cyan: #00E5FF;
       --spider-gold: #D4AF37;
-      
+
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-active: rgba(0, 229, 255, 0.35);
       --border-crimson: rgba(185, 28, 28, 0.35);
-      
+
       --text-main: #F8FAFC;
       --text-muted: #94A3B8;
 
@@ -272,71 +274,190 @@
       color: var(--text-main);
     }
 
-    /* Fully Responsive Executive Spider-Tech Timer */
+    /* Spider-Tech HUD Countdown Timer */
     .timer-container {
-      background: linear-gradient(135deg, rgba(13, 20, 34, 0.9), rgba(185, 28, 28, 0.15));
-      border: 1px solid var(--border-crimson);
+      position: relative;
+      background:
+        radial-gradient(circle at center, rgba(15, 23, 42, 0.92) 0%, rgba(7, 11, 18, 0.97) 100%) padding-box,
+        linear-gradient(135deg, var(--spider-crimson), var(--spider-blue-light) 50%, var(--spider-cyan)) border-box;
+      border: 1px solid transparent;
       color: #ffffff;
-      padding: clamp(16px, 3vw, 28px) clamp(12px, 3vw, 28px);
-      border-radius: 14px;
+      padding: clamp(22px, 3.5vw, 34px) clamp(14px, 3vw, 30px) clamp(26px, 4vw, 36px);
+      border-radius: 16px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 229, 255, 0.05);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), inset 0 0 22px rgba(0, 229, 255, 0.05);
       margin: 20px auto clamp(24px, 5vw, 45px);
       width: 100%;
       max-width: 680px;
+      overflow: hidden;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      position: relative;
+    }
+
+    /* Faint radiating spider-web backdrop */
+    .timer-container::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      background:
+        repeating-conic-gradient(from 0deg, rgba(0, 229, 255, 0.05) 0deg 0.6deg, transparent 0.6deg 30deg),
+        repeating-radial-gradient(circle at center, rgba(185, 28, 28, 0.06) 0px, transparent 1px 44px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Targeting-reticle HUD corners */
+    .hud-corner {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--spider-cyan);
+      opacity: 0.8;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hud-corner.tl {
+      top: 10px;
+      left: 10px;
+      border-color: var(--spider-cyan);
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .hud-corner.tr {
+      top: 10px;
+      right: 10px;
+      border-color: var(--spider-cyan);
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .hud-corner.bl {
+      bottom: 10px;
+      left: 10px;
+      border-color: var(--spider-red-light);
+      border-right: none;
+      border-top: none;
+    }
+
+    .hud-corner.br {
+      bottom: 10px;
+      right: 10px;
+      border-color: var(--spider-red-light);
+      border-left: none;
+      border-top: none;
     }
 
     .timer-title {
-      margin: 0 0 16px 0;
+      position: relative;
+      z-index: 2;
+      margin: 0 0 20px 0;
       font-family: 'Cinzel', serif;
       font-size: clamp(1rem, 2.5vw, 1.3rem);
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--spider-cyan);
-      text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+      background: linear-gradient(90deg, var(--spider-cyan), #ffffff 50%, var(--spider-cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .timer-title::before,
+    .timer-title::after {
+      content: '';
+      width: clamp(20px, 5vw, 40px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--spider-cyan));
+    }
+
+    .timer-title::after {
+      background: linear-gradient(90deg, var(--spider-cyan), transparent);
     }
 
     .countdown {
+      position: relative;
+      z-index: 2;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: clamp(6px, 2vw, 16px);
+      gap: clamp(4px, 1.6vw, 12px);
       width: 100%;
     }
 
-    .time-box {
-      background: rgba(7, 11, 18, 0.9);
-      padding: clamp(8px, 1.8vw, 14px) clamp(6px, 1.5vw, 12px);
-      border-radius: 8px;
-      flex: 1 1 0px;
-      min-width: 0; /* Prevents overflow/cutting on tiny mobile screens */
-      border: 1px solid rgba(0, 229, 255, 0.15);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      position: relative;
-    }
-
-    .time-box::after {
+    /* Web-strand thread running through the segments */
+    .countdown::before {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 10%;
-      width: 80%;
+      top: 50%;
+      left: 4%;
+      right: 4%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--spider-crimson), transparent);
+      background: linear-gradient(90deg, transparent, var(--spider-crimson) 15%, var(--spider-cyan) 50%, var(--spider-crimson) 85%, transparent);
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .time-box {
+      position: relative;
+      background: linear-gradient(160deg, rgba(20, 28, 46, 0.95), rgba(7, 11, 18, 0.92) 55%, rgba(185, 28, 28, 0.10) 100%);
+      clip-path: polygon(14% 0%, 86% 0%, 100% 22%, 100% 78%, 86% 100%, 14% 100%, 0% 78%, 0% 22%);
+      padding: clamp(14px, 2.4vw, 22px) clamp(8px, 1.8vw, 14px);
+      flex: 1 1 0px;
+      min-width: 0;
+      border: 1px solid rgba(0, 229, 255, 0.18);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+
+    /* Glowing joint dot between each panel, like a strand junction */
+    .time-box:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: clamp(-7px, -1.4vw, -5px);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0%, var(--spider-cyan) 45%, var(--spider-red-light) 100%);
+      box-shadow: 0 0 8px var(--spider-cyan), 0 0 2px #fff;
+      transform: translateY(-50%);
+      z-index: 3;
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: translateY(-50%) scale(0.85);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.15);
+      }
     }
 
     .time-box span {
       display: block;
       font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-      font-family: 'Share Tech Mono', monospace; /* Futuristic Business & Web HUD Font */
+      font-family: 'Share Tech Mono', monospace;
+      /* Futuristic Business & Web HUD Font */
       font-weight: 700;
       line-height: 1;
       letter-spacing: 1px;
-      color: #FFFFFF;
-      text-shadow: 0 0 12px rgba(185, 28, 28, 0.6), 0 0 2px var(--spider-cyan);
+      background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, var(--spider-cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba(185, 28, 28, 0.5)) drop-shadow(0 0 4px rgba(0, 229, 255, 0.4));
     }
 
     .time-box label {
@@ -462,7 +583,7 @@
       background: var(--bg-card);
       border: 1px solid var(--spider-blue-dark);
       border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
     }
@@ -500,8 +621,15 @@
     }
 
     @keyframes pulseGlow {
-      0% { opacity: 0.4; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1.3); }
+      0% {
+        opacity: 0.4;
+        transform: scale(0.8);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1.3);
+      }
     }
 
     .spider-node-timeline {
@@ -557,8 +685,13 @@
     }
 
     @keyframes rotateRing {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     .node-number {
@@ -741,24 +874,45 @@
       line-height: 1.4;
     }
 
-    /* Team Slider Track - GPU Hardware Accelerated */
+    /* Team Slider - Compact, Auto-Scrolling, GPU Accelerated */
     .team-slider-wrapper {
       overflow: hidden;
       position: relative;
       width: 100%;
       margin-bottom: 30px;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--border-subtle);
       background: rgba(13, 20, 34, 0.4);
-      padding: 20px 0;
+      padding: 22px 0;
+    }
+
+    .team-slider-wrapper::before,
+    .team-slider-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .team-slider-wrapper::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg-dark), transparent);
+    }
+
+    .team-slider-wrapper::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--bg-dark), transparent);
     }
 
     .team-slider-track {
       display: flex;
-      gap: 16px;
+      gap: 18px;
       width: max-content;
       will-change: transform;
-      animation: autoScroll 45s linear infinite;
+      animation: autoScroll 50s linear infinite;
     }
 
     .team-slider-track:hover {
@@ -766,45 +920,79 @@
     }
 
     @keyframes autoScroll {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-50%, 0, 0); }
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
     }
 
     .team-card {
-      width: 190px;
-      min-height: 148px;
+      position: relative;
+      width: 150px;
+      flex-shrink: 0;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 16px 14px;
+      border-radius: 12px;
+      padding: 20px 12px 16px;
       text-align: center;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      transition: border-color 0.25s ease;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--spider-red), var(--spider-red-light) 45%, var(--spider-blue-light) 80%, var(--spider-cyan));
+      opacity: 0.5;
+      transition: opacity 0.25s ease;
     }
 
     .team-card:hover {
       border-color: var(--spider-cyan);
+      box-shadow: 0 8px 22px rgba(0, 229, 255, 0.15);
     }
 
-    .team-avatar {
-      width: 56px;
-      height: 56px;
+    .team-card:hover::before {
+      opacity: 1;
+    }
+
+    .team-photo-wrap {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 12px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--spider-navy), var(--spider-crimson));
-      margin: 0 auto 10px;
-      display: flex;
+      overflow: hidden;
+      border: 2px solid var(--spider-cyan);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+    }
+
+    .team-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Shown automatically if the photo fails to load */
+    .team-photo-fallback {
+      display: none;
+      width: 100%;
+      height: 100%;
       align-items: center;
       justify-content: center;
+      background: linear-gradient(135deg, var(--spider-navy), var(--spider-crimson));
       font-family: 'Cinzel', serif;
       font-weight: 700;
       font-size: 20px;
       color: #fff;
-      border: 2px solid var(--spider-cyan);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
     }
 
     .team-card h4 {
@@ -812,36 +1000,61 @@
       font-size: 13px;
       font-weight: 700;
       color: #ffffff;
+      margin-bottom: 3px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .team-card span {
+    .team-role {
       font-size: 10px;
       color: var(--text-muted);
-      display: block;
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      white-space: normal;
-      line-height: 1.4;
-      overflow: hidden;
       display: -webkit-box;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+      min-height: 27px;
+      overflow: hidden;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+    }
+
+    .team-linkedin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      margin-top: 10px;
+      border-radius: 50%;
+      border: 1px solid var(--border-active);
+      color: var(--spider-cyan);
+      background: rgba(0, 229, 255, 0.06);
+      transition: all 0.2s ease;
+    }
+
+    .team-linkedin:hover {
+      background: var(--spider-cyan);
+      color: var(--bg-dark);
+      box-shadow: 0 0 12px var(--spider-cyan-glow);
+      transform: scale(1.1);
+    }
+
+    .team-linkedin svg {
+      width: 11px;
+      height: 11px;
     }
 
     /* Memories Gallery Grid */
     .memories-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
       margin-bottom: 30px;
     }
 
     .memory-photo-card {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 4 / 3.4;
       border: 1px solid var(--border-subtle);
       border-radius: 10px;
       background: var(--bg-card);
@@ -859,6 +1072,7 @@
       overflow: hidden;
     }
 
+    
     .memory-photo-card:hover {
       border-color: var(--spider-cyan);
       background: var(--bg-card-hover);
@@ -868,6 +1082,31 @@
 
     .memory-photo-card svg {
       margin-bottom: 6px;
+    }
+
+    .memory-photo-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .memory-photo-card span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .memory-photo-card:has(img) span {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      background: rgba(7, 11, 18, 0.75);
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-align: center;
     }
 
     /* Footer Structure */
@@ -932,8 +1171,13 @@
 
     /* Mobile Adaptations */
     @media (max-width: 768px) {
+
       /* Disable heavy blur filters on mobile to boost rendering speed */
-      header, .timer-container, .category-badge, .spider-roadmap-wrapper, .rule-card {
+      header,
+      .timer-container,
+      .category-badge,
+      .spider-roadmap-wrapper,
+      .rule-card {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
       }
@@ -984,6 +1228,11 @@
 
       .memories-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .memory-photo-card {
+        aspect-ratio: 4 / 3.6;
       }
     }
 
@@ -1008,15 +1257,16 @@
   <header>
     <div class="brand">
       <div class="logo-icon-svg" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2L12 22"/>
-          <path d="M12 8L4 4"/>
-          <path d="M12 8L20 4"/>
-          <path d="M12 12L3 10"/>
-          <path d="M12 12L21 10"/>
-          <path d="M12 16L4 20"/>
-          <path d="M12 16L20 20"/>
-          <circle cx="12" cy="12" r="2" fill="#B91C1C" stroke="none"/>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L12 22" />
+          <path d="M12 8L4 4" />
+          <path d="M12 8L20 4" />
+          <path d="M12 12L3 10" />
+          <path d="M12 12L21 10" />
+          <path d="M12 16L4 20" />
+          <path d="M12 16L20 20" />
+          <circle cx="12" cy="12" r="2" fill="#B91C1C" stroke="none" />
         </svg>
       </div>
       <div class="logo-text">
@@ -1035,7 +1285,8 @@
       </ul>
       <a href="https://zoom.us/j/YOUR_MEETING_ID" target="_blank" class="btn-meet">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
+          <path
+            d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
         </svg>
         MEET
       </a>
@@ -1058,6 +1309,10 @@
 
     <!-- Fully Optimized & Responsive Timer Module -->
     <div class="timer-container">
+      <span class="hud-corner tl"></span>
+      <span class="hud-corner tr"></span>
+      <span class="hud-corner bl"></span>
+      <span class="hud-corner br"></span>
       <h3 class="timer-title">Grand Pitch Day Begins In</h3>
       <div class="countdown">
         <div class="time-box">
@@ -1084,19 +1339,27 @@
       <div class="sponsors-title">Supported By Leading Strategic Partners & Venture Capitalists</div>
       <div class="sponsors-grid">
         <div class="sponsor-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" />
+          </svg>
           VENTURE LABS
         </div>
         <div class="sponsor-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+          </svg>
           CYBER CAPITAL
         </div>
         <div class="sponsor-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2"><path d="M12 2L2 22h20L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
+            <path d="M12 2L2 22h20L12 2z" />
+          </svg>
           NEXUS ACCELERATOR
         </div>
         <div class="sponsor-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+          </svg>
           SVIT INNOVATION CELL
         </div>
       </div>
@@ -1235,7 +1498,8 @@
                   <h3 class="rule-title">Team Formation & Structure</h3>
                   <span class="rule-category-tag">Eligibility</span>
                 </div>
-                <p class="rule-summary">Teams must consist of 2–5 enrolled undergraduate/postgraduate members with a designated team leader. Interdisciplinary collaboration is strongly encouraged.</p>
+                <p class="rule-summary">Teams must consist of 2–5 enrolled undergraduate/postgraduate members with a
+                  designated team leader. Interdisciplinary collaboration is strongly encouraged.</p>
               </div>
             </div>
           </div>
@@ -1249,7 +1513,8 @@
                   <h3 class="rule-title">Originality & IP Protection</h3>
                   <span class="rule-category-tag">IP Rights</span>
                 </div>
-                <p class="rule-summary">All solutions must be original work. Teams retain 100% ownership of their IP; any open-source resources used must be explicitly credited.</p>
+                <p class="rule-summary">All solutions must be original work. Teams retain 100% ownership of their IP;
+                  any open-source resources used must be explicitly credited.</p>
               </div>
             </div>
           </div>
@@ -1263,7 +1528,8 @@
                   <h3 class="rule-title">Mandatory Sprint Check-ins</h3>
                   <span class="rule-category-tag">Cohort</span>
                 </div>
-                <p class="rule-summary">80%+ attendance in weekly mentor syncs and milestone filing is mandatory to remain eligible for the Grand Pitch Day.</p>
+                <p class="rule-summary">80%+ attendance in weekly mentor syncs and milestone filing is mandatory to
+                  remain eligible for the Grand Pitch Day.</p>
               </div>
             </div>
           </div>
@@ -1277,7 +1543,8 @@
                   <h3 class="rule-title">Demo Day Pitching Rules</h3>
                   <span class="rule-category-tag">Grand Finale</span>
                 </div>
-                <p class="rule-summary">Strictly timed 5-minute live pitch, followed by a 3-minute investor Q&A with a live working prototype demonstration.</p>
+                <p class="rule-summary">Strictly timed 5-minute live pitch, followed by a 3-minute investor Q&A with a
+                  live working prototype demonstration.</p>
               </div>
             </div>
           </div>
@@ -1291,49 +1558,567 @@
       <h2 class="section-title">Our Organizing Team</h2>
       <div class="team-slider-wrapper">
         <div class="team-slider-track">
-          <!-- Profiles -->
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devang</h4><span>Lead Coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">P</div><h4>Parth</h4><span>Tech Head</span></div>
-          <div class="team-card"><div class="team-avatar">K</div><h4>Krisha</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devanshi</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">B</div><h4>Bhavya</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">R</div><h4>Ronak</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">Y</div><h4>Yesha</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Drashti</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mrunal</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jalpit</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Manthan</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neel</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Meet</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">T</div><h4>Tisha</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Maitri</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">A</div><h4>Akshat</h4><span>Event Manager</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jay Nirmal</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neetika</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mohammad</h4><span>Joint Co-coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Durva</h4><span>Joint Coordinator</span></div>
-
-          <!-- DUPLICATED FOR INFINITE SCROLL LOOP -->
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devang</h4><span>Lead Coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">P</div><h4>Parth</h4><span>Tech Head</span></div>
-          <div class="team-card"><div class="team-avatar">K</div><h4>Krisha</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Devanshi</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">B</div><h4>Bhavya</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">R</div><h4>Ronak</h4><span>Engagement & Hospitality</span></div>
-          <div class="team-card"><div class="team-avatar">Y</div><h4>Yesha</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Drashti</h4><span>Documentation & Assistance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mrunal</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jalpit</h4><span>Website Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Manthan</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neel</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Meet</h4><span>SMM Team</span></div>
-          <div class="team-card"><div class="team-avatar">T</div><h4>Tisha</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Maitri</h4><span>Finance</span></div>
-          <div class="team-card"><div class="team-avatar">A</div><h4>Akshat</h4><span>Event Manager</span></div>
-          <div class="team-card"><div class="team-avatar">J</div><h4>Jay Nirmal</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">N</div><h4>Neetika</h4><span>Designer</span></div>
-          <div class="team-card"><div class="team-avatar">M</div><h4>Mohammad</h4><span>Joint Co-coordinator</span></div>
-          <div class="team-card"><div class="team-avatar">D</div><h4>Durva</h4><span>Joint Coordinator</span></div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/devang.jpg" alt="Devang" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Devang</h4>
+            <span class="team-role">Lead Coordinator</span>
+            <a href="https://linkedin.com/in/devang" target="_blank" class="team-linkedin"
+              aria-label="Devang LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/parth.jpg" alt="Parth" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">P</div>
+            </div>
+            <h4>Parth</h4>
+            <span class="team-role">Tech Head</span>
+            <a href="https://linkedin.com/in/parth" target="_blank" class="team-linkedin"
+              aria-label="Parth LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/krisha.jpg" alt="Krisha" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">K</div>
+            </div>
+            <h4>Krisha</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/krisha" target="_blank" class="team-linkedin"
+              aria-label="Krisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/devanshi.jpg" alt="Devanshi" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Devanshi</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/devanshi" target="_blank" class="team-linkedin"
+              aria-label="Devanshi LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/bhavya.jpg" alt="Bhavya" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">B</div>
+            </div>
+            <h4>Bhavya</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/bhavya" target="_blank" class="team-linkedin"
+              aria-label="Bhavya LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/ronak.jpg" alt="Ronak" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">R</div>
+            </div>
+            <h4>Ronak</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/ronak" target="_blank" class="team-linkedin"
+              aria-label="Ronak LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/yesha.jpg" alt="Yesha" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">Y</div>
+            </div>
+            <h4>Yesha</h4>
+            <span class="team-role">Documentation & Assistance</span>
+            <a href="https://linkedin.com/in/yesha" target="_blank" class="team-linkedin"
+              aria-label="Yesha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/drashti.jpg" alt="Drashti" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Drashti</h4>
+            <span class="team-role">Documentation & Assistance</span>
+            <a href="https://linkedin.com/in/drashti" target="_blank" class="team-linkedin"
+              aria-label="Drashti LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/mrunal.jpg" alt="Mrunal" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Mrunal</h4>
+            <span class="team-role">Website Team</span>
+            <a href="https://linkedin.com/in/mrunal" target="_blank" class="team-linkedin"
+              aria-label="Mrunal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/jalpit.jpg" alt="Jalpit" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">J</div>
+            </div>
+            <h4>Jalpit</h4>
+            <span class="team-role">Website Team</span>
+            <a href="https://linkedin.com/in/jalpit" target="_blank" class="team-linkedin"
+              aria-label="Jalpit LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/manthan.jpg" alt="Manthan" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Manthan</h4>
+            <span class="team-role">SMM Team</span>
+            <a href="https://linkedin.com/in/manthan" target="_blank" class="team-linkedin"
+              aria-label="Manthan LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/neel.jpg" alt="Neel" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">N</div>
+            </div>
+            <h4>Neel</h4>
+            <span class="team-role">SMM Team</span>
+            <a href="https://linkedin.com/in/neel" target="_blank" class="team-linkedin" aria-label="Neel LinkedIn"><svg
+                viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/meet.jpg" alt="Meet" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Meet</h4>
+            <span class="team-role">SMM Team</span>
+            <a href="https://linkedin.com/in/meet" target="_blank" class="team-linkedin" aria-label="Meet LinkedIn"><svg
+                viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/tisha.jpg" alt="Tisha" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">T</div>
+            </div>
+            <h4>Tisha</h4>
+            <span class="team-role">Finance</span>
+            <a href="https://linkedin.com/in/tisha" target="_blank" class="team-linkedin"
+              aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/maitri.jpg" alt="Maitri" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Maitri</h4>
+            <span class="team-role">Finance</span>
+            <a href="https://linkedin.com/in/maitri" target="_blank" class="team-linkedin"
+              aria-label="Maitri LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/akshat.jpg" alt="Akshat" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">A</div>
+            </div>
+            <h4>Akshat</h4>
+            <span class="team-role">Event Manager</span>
+            <a href="https://linkedin.com/in/akshat" target="_blank" class="team-linkedin"
+              aria-label="Akshat LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/jay-nirmal.jpg" alt="Jay Nirmal" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">J</div>
+            </div>
+            <h4>Jay Nirmal</h4>
+            <span class="team-role">Designer</span>
+            <a href="https://linkedin.com/in/jay-nirmal" target="_blank" class="team-linkedin"
+              aria-label="Jay Nirmal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/neetika.jpg" alt="Neetika" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">N</div>
+            </div>
+            <h4>Neetika</h4>
+            <span class="team-role">Designer</span>
+            <a href="https://linkedin.com/in/neetika" target="_blank" class="team-linkedin"
+              aria-label="Neetika LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/mohammad.jpg" alt="Mohammad" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Mohammad</h4>
+            <span class="team-role">Joint Co-coordinator</span>
+            <a href="https://linkedin.com/in/mohammad" target="_blank" class="team-linkedin"
+              aria-label="Mohammad LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/durva.jpg" alt="Durva" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Durva</h4>
+            <span class="team-role">Joint Coordinator</span>
+            <a href="https://linkedin.com/in/durva" target="_blank" class="team-linkedin"
+              aria-label="Durva LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <!-- Duplicated set for seamless infinite scroll -->
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/devang.jpg" alt="Devang" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Devang</h4>
+            <span class="team-role">Lead Coordinator</span>
+            <a href="https://linkedin.com/in/devang" target="_blank" class="team-linkedin"
+              aria-label="Devang LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/parth.jpg" alt="Parth" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">P</div>
+            </div>
+            <h4>Parth</h4>
+            <span class="team-role">Tech Head</span>
+            <a href="https://linkedin.com/in/parth" target="_blank" class="team-linkedin"
+              aria-label="Parth LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/krisha.jpg" alt="Krisha" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">K</div>
+            </div>
+            <h4>Krisha</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/krisha" target="_blank" class="team-linkedin"
+              aria-label="Krisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/devanshi.jpg" alt="Devanshi" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Devanshi</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/devanshi" target="_blank" class="team-linkedin"
+              aria-label="Devanshi LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/bhavya.jpg" alt="Bhavya" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">B</div>
+            </div>
+            <h4>Bhavya</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/bhavya" target="_blank" class="team-linkedin"
+              aria-label="Bhavya LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/ronak.jpg" alt="Ronak" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">R</div>
+            </div>
+            <h4>Ronak</h4>
+            <span class="team-role">Engagement & Hospitality</span>
+            <a href="https://linkedin.com/in/ronak" target="_blank" class="team-linkedin"
+              aria-label="Ronak LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/yesha.jpg" alt="Yesha" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">Y</div>
+            </div>
+            <h4>Yesha</h4>
+            <span class="team-role">Documentation & Assistance</span>
+            <a href="https://linkedin.com/in/yesha" target="_blank" class="team-linkedin"
+              aria-label="Yesha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/drashti.jpg" alt="Drashti" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Drashti</h4>
+            <span class="team-role">Documentation & Assistance</span>
+            <a href="https://linkedin.com/in/drashti" target="_blank" class="team-linkedin"
+              aria-label="Drashti LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/mrunal.jpg" alt="Mrunal" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Mrunal</h4>
+            <span class="team-role">Website Team</span>
+            <a href="https://linkedin.com/in/mrunal" target="_blank" class="team-linkedin"
+              aria-label="Mrunal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/jalpit.jpg" alt="Jalpit" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">J</div>
+            </div>
+            <h4>Jalpit</h4>
+            <span class="team-role">Website Team</span>
+            <a href="https://linkedin.com/in/jalpit" target="_blank" class="team-linkedin"
+              aria-label="Jalpit LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/manthan.jpg" alt="Manthan" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Manthan</h4>
+            <span class="team-role">SMM Team</span>
+            <a href="https://linkedin.com/in/manthan" target="_blank" class="team-linkedin"
+              aria-label="Manthan LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/neel.jpg" alt="Neel" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">N</div>
+            </div>
+            <h4>Neel</h4>
+            <span class="team-role">SMM Team</span>
+            <a href="https://linkedin.com/in/neel" target="_blank" class="team-linkedin" aria-label="Neel LinkedIn"><svg
+                viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/meet.jpg" alt="Meet" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Meet</h4>
+            <span class="team-role">SMM Team</span>
+            <a href="https://linkedin.com/in/meet" target="_blank" class="team-linkedin" aria-label="Meet LinkedIn"><svg
+                viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/tisha.jpg" alt="Tisha" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">T</div>
+            </div>
+            <h4>Tisha</h4>
+            <span class="team-role">Finance</span>
+            <a href="https://linkedin.com/in/tisha" target="_blank" class="team-linkedin"
+              aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/maitri.jpg" alt="Maitri" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Maitri</h4>
+            <span class="team-role">Finance</span>
+            <a href="https://linkedin.com/in/maitri" target="_blank" class="team-linkedin"
+              aria-label="Maitri LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/akshat.jpg" alt="Akshat" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">A</div>
+            </div>
+            <h4>Akshat</h4>
+            <span class="team-role">Event Manager</span>
+            <a href="https://linkedin.com/in/akshat" target="_blank" class="team-linkedin"
+              aria-label="Akshat LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/jay-nirmal.jpg" alt="Jay Nirmal" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">J</div>
+            </div>
+            <h4>Jay Nirmal</h4>
+            <span class="team-role">Designer</span>
+            <a href="https://linkedin.com/in/jay-nirmal" target="_blank" class="team-linkedin"
+              aria-label="Jay Nirmal LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/neetika.jpg" alt="Neetika" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">N</div>
+            </div>
+            <h4>Neetika</h4>
+            <span class="team-role">Designer</span>
+            <a href="https://linkedin.com/in/neetika" target="_blank" class="team-linkedin"
+              aria-label="Neetika LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/mohammad.jpg" alt="Mohammad" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">M</div>
+            </div>
+            <h4>Mohammad</h4>
+            <span class="team-role">Joint Co-coordinator</span>
+            <a href="https://linkedin.com/in/mohammad" target="_blank" class="team-linkedin"
+              aria-label="Mohammad LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
+          <div class="team-card">
+            <div class="team-photo-wrap">
+              <img src="assets/team/durva.jpg" alt="Durva" class="team-photo"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="team-photo-fallback">D</div>
+            </div>
+            <h4>Durva</h4>
+            <span class="team-role">Joint Coordinator</span>
+            <a href="https://linkedin.com/in/durva" target="_blank" class="team-linkedin"
+              aria-label="Durva LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg></a>
+          </div>
         </div>
       </div>
     </section>
@@ -1343,40 +2128,22 @@
       <h2 class="section-title">Past Year Memories</h2>
       <div class="memories-grid">
         <div class="memory-photo-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="1.5">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          <span>Keynote Address</span>
+          <img src="past_year_pics/9.webp" alt="Keynote Address" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="1.5">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          <span>Mentor Sessions</span>
+          <img src="past_year_pics/1.webp" alt="Mentor Sessions" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="1.5">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          <span>Prototype Lab</span>
+          <img src="past_year_pics/2.webp" alt="Prototype Lab" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="1.5">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          <span>Investor Panel</span>
+          <img src="past_year_pics/4.webp" alt="Investor Panel" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="1.5">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          <span>Grand Demo Day</span>
+          <img src="past_year_pics/5.webp" alt="Grand Demo Day" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="1.5">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          <span>Award Ceremony</span>
+          <img src="past_year_pics/6.webp" alt="Award Ceremony" onerror="this.style.display='none';">
         </div>
       </div>
     </section>
@@ -1384,15 +2151,27 @@
 
   <footer>
     <div class="social-links">
-      <a href="https://www.linkedin.com/company/buzz-tech2025/" target="_blank" class="social-icon" aria-label="BuzzTech LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg>
+      <a href="https://www.linkedin.com/company/buzz-tech2025/" target="_blank" class="social-icon"
+        aria-label="BuzzTech LinkedIn">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+        </svg>
       </a>
-      <a href="https://www.instagram.com/buzz.tech2026/" target="_blank" class="social-icon" aria-label="BuzzTech Instagram">
-        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+      <a href="https://www.instagram.com/buzz.tech2026/" target="_blank" class="social-icon"
+        aria-label="BuzzTech Instagram">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
       </a>
       <!-- TODO: replace with the real BuzzTech WhatsApp community invite link -->
-      <a href="https://chat.whatsapp.com/YOUR_COMMUNITY_INVITE_CODE" target="_blank" class="social-icon" aria-label="BuzzTech WhatsApp Community">
-        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.27 4.9L2 22l5.25-1.38a9.96 9.96 0 0 0 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.84-10.01-9.84zm5.87 14.14c-.25.7-1.45 1.33-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.63-2.96-1.28-4.89-4.26-5.04-4.46-.15-.2-1.21-1.61-1.21-3.07s.77-2.18 1.04-2.48c.27-.3.6-.37.8-.37.2 0 .4.002.57.01.19.01.43-.07.68.51.25.6.85 2.07.92 2.22.07.15.12.33.02.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.05 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.13.65-.08.17-.2.74-.87.94-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.08.13.08.75-.17 1.45z"/></svg>
+      <a href="https://chat.whatsapp.com/YOUR_COMMUNITY_INVITE_CODE" target="_blank" class="social-icon"
+        aria-label="BuzzTech WhatsApp Community">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.27 4.9L2 22l5.25-1.38a9.96 9.96 0 0 0 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.84-10.01-9.84zm5.87 14.14c-.25.7-1.45 1.33-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.63-2.96-1.28-4.89-4.26-5.04-4.46-.15-.2-1.21-1.61-1.21-3.07s.77-2.18 1.04-2.48c.27-.3.6-.37.8-.37.2 0 .4.002.57.01.19.01.43-.07.68.51.25.6.85 2.07.92 2.22.07.15.12.33.02.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.05 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.13.65-.08.17-.2.74-.87.94-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05.98.3.15.5.22.57.35.08.13.08.75-.17 1.45z" />
+        </svg>
       </a>
     </div>
 
@@ -1405,7 +2184,7 @@
 
   <script>
     // Countdown Timer Engine
-    const targetDate = new Date("Auguast 4, 2026 23:59:59").getTime();
+    const targetDate = new Date("December 31, 2026 23:59:59").getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -1444,11 +2223,11 @@
 
     // Performance Optimized Cyber Web-Lattice Canvas Engine
     const canvas = document.getElementById('webCanvas');
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext('2d', {alpha: true});
 
     let width, height;
     let webNodes = [];
-    let pointer = { x: -1000, y: -1000, lastX: null, lastY: null };
+    let pointer = {x: -1000, y: -1000, lastX: null, lastY: null};
 
     // Device performance detection
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
@@ -1460,12 +2239,12 @@
 
     // Weighted toward red + blue (the theme's core contrast), cyan/white only as light accents
     const COLORS = [
-      { r: 185, g: 28, b: 28 },   /* Crimson */
-      { r: 185, g: 28, b: 28 },   /* Crimson (weighted) */
-      { r: 30, g: 58, b: 138 },   /* Navy Blue */
-      { r: 30, g: 58, b: 138 },   /* Navy Blue (weighted) */
-      { r: 0, g: 229, b: 255 },   /* Cyan accent */
-      { r: 226, g: 232, b: 240 }  /* Soft off-white, not pure white */
+      {r: 185, g: 28, b: 28},   /* Crimson */
+      {r: 185, g: 28, b: 28},   /* Crimson (weighted) */
+      {r: 30, g: 58, b: 138},   /* Navy Blue */
+      {r: 30, g: 58, b: 138},   /* Navy Blue (weighted) */
+      {r: 0, g: 229, b: 255},   /* Cyan accent */
+      {r: 226, g: 232, b: 240}  /* Soft off-white, not pure white */
     ];
 
     function resize() {
@@ -1478,7 +2257,7 @@
     }
 
     resize();
-    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('resize', resize, {passive: true});
 
     function createWebParticles(x, y) {
       const now = performance.now();
@@ -1527,13 +2306,13 @@
 
     window.addEventListener('mousemove', (e) => {
       createWebParticles(e.clientX, e.clientY);
-    }, { passive: true });
+    }, {passive: true});
 
     window.addEventListener('touchmove', (e) => {
       if (e.touches.length > 0) {
         createWebParticles(e.touches[0].clientX, e.touches[0].clientY);
       }
-    }, { passive: true });
+    }, {passive: true});
 
     // Directional scroll "web-shoot" effect: fires a single thread of webbing
     // downward when scrolling down, upward when scrolling up. One particle
@@ -1572,7 +2351,7 @@
           webNodes.splice(0, webNodes.length - MAX_NODES);
         }
       });
-    }, { passive: true });
+    }, {passive: true});
 
     let lastFrameTime = performance.now();
 
