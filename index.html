@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BuzzTech 2.0 | SVIT Vasad Flagship Venture & Startup Summit</title>
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="BUZZTECH_LOGO.webp">
+
   <!-- Barlow for everything; Teko reserved for large titles only -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,15 +112,25 @@
     }
 
     .logo-icon-svg {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, rgba(185, 28, 28, 0.2), rgba(30, 58, 138, 0.4));
+      width: 44px;
+      height: 44px;
+      background: #f4f6fa;
       border: 1px solid var(--border-crimson);
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 15px var(--spider-crimson-glow);
+      padding: 4px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo-icon-svg img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .logo-text {
@@ -1352,18 +1365,8 @@
 
   <header>
     <div class="brand">
-      <div class="logo-icon-svg" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2L12 22" />
-          <path d="M12 8L4 4" />
-          <path d="M12 8L20 4" />
-          <path d="M12 12L3 10" />
-          <path d="M12 12L21 10" />
-          <path d="M12 16L4 20" />
-          <path d="M12 16L20 20" />
-          <circle cx="12" cy="12" r="2" fill="#B91C1C" stroke="none" />
-        </svg>
+      <div class="logo-icon-svg">
+        <img src="BUZZTECH_LOGO.webp" alt="BuzzTech 2.0 logo" width="44" height="44" decoding="async">
       </div>
       <div class="logo-text">
         <div class="logo">BuzzTech <span>2.0</span></div>
@@ -1393,7 +1396,7 @@
     <span class="category-badge">Flagship Venture Sprint • SVIT Vasad</span>
 
     <article class="article-header">
-      <h1>BuzzTech 2.0: Accelerating Next-Gen Founders From Concept to Angel Funding</h1>
+      <h1>BuzzTech</h1>
       <div class="meta-info">
         <span>Hosted at <strong>SVIT, Vasad</strong></span>
         <span>•</span>
@@ -1438,25 +1441,25 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
             <polygon points="12 2 2 7 12 12 22 7 12 2" />
           </svg>
-          VENTURE LABS
+          SSIP CELL
         </div>
         <div class="sponsor-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
             <rect x="2" y="3" width="20" height="14" rx="2" />
           </svg>
-          CYBER CAPITAL
+          RIC CELL
         </div>
         <div class="sponsor-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
             <path d="M12 2L2 22h20L12 2z" />
           </svg>
-          NEXUS ACCELERATOR
+          IIC CELL
         </div>
         <div class="sponsor-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
             <circle cx="12" cy="12" r="10" />
           </svg>
-          SVIT INNOVATION CELL
+          SVIT IT DEPT
         </div>
       </div>
     </div>
