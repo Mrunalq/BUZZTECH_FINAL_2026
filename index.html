@@ -259,6 +259,10 @@
       box-shadow: 0 0 10px var(--spider-crimson);
     }
 
+    .article-header {
+      text-align: center;
+    }
+
     .article-header h1 {
       font-family: 'Teko', sans-serif;
       font-weight: 700;
@@ -271,10 +275,18 @@
       -webkit-text-fill-color: transparent;
     }
 
+    .hero-wordmark {
+      display: block;
+      height: clamp(160px, 90vw, 220px);
+      width: auto;
+      margin: 0 auto 20px;
+    }
+
     .meta-info {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
       gap: 12px;
       font-size: 13px;
       color: var(--text-muted);
@@ -483,6 +495,36 @@
       color: var(--spider-cyan);
       font-weight: 600;
       white-space: nowrap;
+    }
+
+    /* Partner Logos Row (actual institution logos, below sponsors bar) */
+    .partner-logos-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0 16px;
+    }
+
+    .partner-logo-item {
+      background: #f4f6fa;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 2px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 26px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .partner-logo-item img {
+      height: 90%;
+      width: auto;
+      max-width: 56px;
+      object-fit: contain;
+      display: block;
     }
 
     /* Corporate Sponsors / Partners Banner */
@@ -810,7 +852,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 16px 20px;
+      padding: 16px 44px 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -839,6 +881,34 @@
       bottom: 0;
       width: 4px;
       background: linear-gradient(180deg, var(--spider-red) 0%, var(--spider-red-light) 55%, var(--spider-blue-light) 100%);
+    }
+
+    /* Subtle "more info below" cue — a light chevron that sits on every
+       rule card so visitors (desktop and mobile alike) know each rule
+       expands. Pure CSS, so it needs no per-card markup and never
+       affects the accordion's open/close performance. */
+    .rule-card::after {
+      content: '';
+      position: absolute;
+      right: 18px;
+      top: 22px;
+      width: 9px;
+      height: 9px;
+      border-right: 1.5px solid rgba(255, 255, 255, 0.3);
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
+      transform: rotate(45deg);
+      transition: transform 0.3s ease, opacity 0.3s ease, border-color 0.25s ease;
+      pointer-events: none;
+    }
+
+    .rule-card:hover::after {
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+
+    .rule-card.expanded::after {
+      transform: rotate(-135deg);
+      border-color: var(--spider-cyan);
+      opacity: 0.75;
     }
 
     .rule-card:hover {
@@ -1393,12 +1463,28 @@
   </header>
 
   <main>
-    <span class="category-badge">Flagship Venture Sprint • SVIT Vasad</span>
+    <span class="category-badge">Venture Sprint • SVIT Vasad</span>
 
     <article class="article-header">
-      <h1>BuzzTech</h1>
+      <img src="Buzztechtext.svg" alt="BuzzTech" class="hero-wordmark">
+
+      <div class="partner-logos-row">
+        <div class="partner-logo-item">
+          <img src="cell_logo/ssip_cell.webp" alt="SSIP Cell logo" loading="lazy">
+        </div>
+        <div class="partner-logo-item">
+          <img src="cell_logo/ric_cell.webp" alt="Research & Innovation Centre logo" loading="lazy">
+        </div>
+        <div class="partner-logo-item">
+          <img src="cell_logo/iic_cell.webp" alt="Institution's Innovation Council logo" loading="lazy">
+        </div>
+        <div class="partner-logo-item">
+          <img src="cell_logo/svit_logo.webp" alt="SVIT logo" loading="lazy">
+        </div>
+      </div>
+
       <div class="meta-info">
-        <span>Hosted at <strong>SVIT, Vasad</strong></span>
+        <span>Hosted by <strong> IT DEPT</strong></span>
         <span>•</span>
         <span>50-Day Cohort Journey</span>
         <span>•</span>
@@ -1435,7 +1521,7 @@
 
     <!-- Corporate Ecosystem Partners Bar -->
     <div class="sponsors-bar">
-      <div class="sponsors-title">Supported By Leading Strategic Partners & Venture Capitalists</div>
+      <div class="sponsors-title">Supported and organised by </div>
       <div class="sponsors-grid">
         <div class="sponsor-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
@@ -1459,7 +1545,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--spider-cyan)" stroke-width="2">
             <circle cx="12" cy="12" r="10" />
           </svg>
-          SVIT IT DEPT
+          SVIT
         </div>
       </div>
     </div>
@@ -1473,7 +1559,7 @@
         networks.</p>
 
       <blockquote>
-        "Great ventures require more than ambition—they demand execution. BuzzTech transforms raw technical ingenuity
+        "Great ventures require more than ambition, they demand execution. BuzzTech transforms raw technical ingenuity
         into market-ready enterprise."
       </blockquote>
 
@@ -1501,7 +1587,7 @@
             <div class="node-card">
               <div class="node-header-row">
                 <span class="node-stage-tag">Stage 1 • Problem Discovery</span>
-                <span class="node-duration">TDS</span>
+                <span class="node-duration">TBA</span>
               </div>
               <h4>Origin: Pain-Point Discovery & Validation</h4>
             </div>
@@ -1515,7 +1601,7 @@
             <div class="node-card">
               <div class="node-header-row">
                 <span class="node-stage-tag">Stage 2 • Solution Architecture</span>
-                <span class="node-duration">TDS</span>
+                <span class="node-duration">TBA</span>
               </div>
               <h4>Ideation & Pitch Architecture</h4>
             </div>
@@ -1529,7 +1615,7 @@
             <div class="node-card">
               <div class="node-header-row">
                 <span class="node-stage-tag">Stage 3 • Rapid Prototyping</span>
-                <span class="node-duration">TDS</span>
+                <span class="node-duration">TBA</span>
               </div>
               <h4>MVP Lab & Hardware Prototyping</h4>
             </div>
@@ -2228,8 +2314,8 @@
             </div>
             <h4>Meet</h4>
             <span class="team-role">SMM Team</span>
-            <a  class="team-linkedin"
-              aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://www.linkedin.com/in/mrunal-parikh-a0574624a/" target="_blank" class="team-linkedin"
+              aria-label="Meet LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg></a>
@@ -2505,12 +2591,12 @@
             <div class="team-photo-wrap">
               <img src="assets/team/meet.jpg" alt="Meet" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-              <div class="team-photo-fallback">M</div>
+              <div class="team-photo-fallback">N</div>
             </div>
             <h4>Meet</h4>
             <span class="team-role">SMM Team</span>
-            <a class="team-linkedin"
-              aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://www.linkedin.com/in/mrunal-parikh-a0574624a/" target="_blank" class="team-linkedin" aria-label="Meet LinkedIn"><svg
+                viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg></a>
@@ -2670,7 +2756,7 @@
 
   <script>
     // Countdown Timer Engine
-    const targetDate = new Date("December 31, 2026 23:59:59").getTime();
+    const targetDate = new Date("August 10, 2026 23:59:59").getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -2901,21 +2987,47 @@
     requestAnimationFrame(animate);
 
     // Rulebook accordion — click a rule card to slide its details open/closed.
-    // Each card toggles independently; no visual styling touched, only the
-    // 'expanded' class which the CSS above uses to animate the slide.
+    // Only one card stays open at a time: opening a card closes whichever
+    // other card was previously open. Still driven purely by the 'expanded'
+    // class (CSS grid-template-rows transition), so it stays GPU-smooth —
+    // this only changes which cards get the class, not how the animation runs.
     (function () {
       const ruleGrid = document.getElementById('ruleGrid');
       if (!ruleGrid) return;
 
-      const cards = ruleGrid.querySelectorAll('.rule-card');
+      const cards = Array.from(ruleGrid.querySelectorAll('.rule-card'));
+      let openCard = null;
+
       cards.forEach((card) => {
         card.setAttribute('tabindex', '0');
         card.setAttribute('role', 'button');
         card.setAttribute('aria-expanded', 'false');
 
+        const close = (c) => {
+          c.classList.remove('expanded');
+          c.setAttribute('aria-expanded', 'false');
+        };
+
+        const open = (c) => {
+          c.classList.add('expanded');
+          c.setAttribute('aria-expanded', 'true');
+        };
+
         const toggle = () => {
-          const isExpanded = card.classList.toggle('expanded');
-          card.setAttribute('aria-expanded', String(isExpanded));
+          const wasOpen = card.classList.contains('expanded');
+
+          // Close whichever card is currently open (if it isn't this one)
+          if (openCard && openCard !== card) {
+            close(openCard);
+          }
+
+          if (wasOpen) {
+            close(card);
+            openCard = null;
+          } else {
+            open(card);
+            openCard = card;
+          }
         };
 
         card.addEventListener('click', toggle);
