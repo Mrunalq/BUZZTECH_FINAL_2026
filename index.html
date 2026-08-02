@@ -811,6 +811,11 @@
       touch-action: manipulation;
       outline: none;
       user-select: none;
+      /* Scopes this card's internal layout changes so expanding/collapsing
+         one card doesn't force the browser to recompute layout for the rest
+         of the page — this is what keeps the accordion snappy even with
+         many cards on screen and the canvas animation running underneath. */
+      contain: layout paint;
     }
 
     .rule-card::before {
@@ -2045,7 +2050,7 @@
         <div class="team-slider-track">
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/devang.jpg" alt="Devang" class="team-photo"
+              <img src="assets/team/devang.jpg" alt="Devang" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2059,7 +2064,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/parth.jpg" alt="Parth" class="team-photo"
+              <img src="assets/team/parth.jpg" alt="Parth" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">P</div>
             </div>
@@ -2073,7 +2078,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/krisha.jpg" alt="Krisha" class="team-photo"
+              <img src="assets/team/krisha.jpg" alt="Krisha" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">K</div>
             </div>
@@ -2087,7 +2092,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/devanshi.jpg" alt="Devanshi" class="team-photo"
+              <img src="assets/team/devanshi.jpg" alt="Devanshi" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2101,7 +2106,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/bhavya.jpg" alt="Bhavya" class="team-photo"
+              <img src="assets/team/bhavya.jpg" alt="Bhavya" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">B</div>
             </div>
@@ -2115,7 +2120,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/ronak.jpg" alt="Ronak" class="team-photo"
+              <img src="assets/team/ronak.jpg" alt="Ronak" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">R</div>
             </div>
@@ -2129,7 +2134,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/yesha.jpg" alt="Yesha" class="team-photo"
+              <img src="assets/team/yesha.jpg" alt="Yesha" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">Y</div>
             </div>
@@ -2143,7 +2148,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/drashti.jpg" alt="Drashti" class="team-photo"
+              <img src="assets/team/drashti.jpg" alt="Drashti" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2157,7 +2162,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/mrunal.jpg" alt="Mrunal" class="team-photo"
+              <img src="assets/team/mrunal.jpg" alt="Mrunal" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2171,7 +2176,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/jalpit.jpg" alt="Jalpit" class="team-photo"
+              <img src="assets/team/jalpit.jpg" alt="Jalpit" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">J</div>
             </div>
@@ -2185,7 +2190,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/manthan.jpg" alt="Manthan" class="team-photo"
+              <img src="assets/team/manthan.jpg" alt="Manthan" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2199,7 +2204,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/neel.jpg" alt="Neel" class="team-photo"
+              <img src="assets/team/neel.jpg" alt="Neel" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">N</div>
             </div>
@@ -2213,7 +2218,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/meet.jpg" alt="Meet" class="team-photo"
+              <img src="assets/team/meet.jpg" alt="Meet" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2227,7 +2232,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/tisha.jpg" alt="Tisha" class="team-photo"
+              <img src="assets/team/tisha.jpg" alt="Tisha" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">T</div>
             </div>
@@ -2241,7 +2246,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/maitri.jpg" alt="Maitri" class="team-photo"
+              <img src="assets/team/maitri.jpg" alt="Maitri" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2255,7 +2260,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/akshat.jpg" alt="Akshat" class="team-photo"
+              <img src="assets/team/akshat.jpg" alt="Akshat" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">A</div>
             </div>
@@ -2269,7 +2274,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/jay-nirmal.jpg" alt="Jay Nirmal" class="team-photo"
+              <img src="assets/team/jay-nirmal.jpg" alt="Jay Nirmal" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">J</div>
             </div>
@@ -2283,7 +2288,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/neetika.jpg" alt="Neetika" class="team-photo"
+              <img src="assets/team/neetika.jpg" alt="Neetika" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">N</div>
             </div>
@@ -2297,7 +2302,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/mohammad.jpg" alt="Mohammed" class="team-photo"
+              <img src="assets/team/mohammad.jpg" alt="Mohammed" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2311,7 +2316,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/durva.jpg" alt="Durva" class="team-photo"
+              <img src="assets/team/durva.jpg" alt="Durva" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2326,7 +2331,7 @@
           <!-- Duplicated set for seamless infinite scroll -->
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/devang.jpg" alt="Devang" class="team-photo"
+              <img src="assets/team/devang.jpg" alt="Devang" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2340,7 +2345,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/parth.jpg" alt="Parth" class="team-photo"
+              <img src="assets/team/parth.jpg" alt="Parth" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">P</div>
             </div>
@@ -2354,7 +2359,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/krisha.jpg" alt="Krisha" class="team-photo"
+              <img src="assets/team/krisha.jpg" alt="Krisha" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">K</div>
             </div>
@@ -2368,7 +2373,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/devanshi.jpg" alt="Devanshi" class="team-photo"
+              <img src="assets/team/devanshi.jpg" alt="Devanshi" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2382,7 +2387,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/bhavya.jpg" alt="Bhavya" class="team-photo"
+              <img src="assets/team/bhavya.jpg" alt="Bhavya" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">B</div>
             </div>
@@ -2396,7 +2401,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/ronak.jpg" alt="Ronak" class="team-photo"
+              <img src="assets/team/ronak.jpg" alt="Ronak" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">R</div>
             </div>
@@ -2410,7 +2415,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/yesha.jpg" alt="Yesha" class="team-photo"
+              <img src="assets/team/yesha.jpg" alt="Yesha" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">Y</div>
             </div>
@@ -2424,7 +2429,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/drashti.jpg" alt="Drashti" class="team-photo"
+              <img src="assets/team/drashti.jpg" alt="Drashti" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2438,7 +2443,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/mrunal.jpg" alt="Mrunal" class="team-photo"
+              <img src="assets/team/mrunal.jpg" alt="Mrunal" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2452,7 +2457,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/jalpit.jpg" alt="Jalpit" class="team-photo"
+              <img src="assets/team/jalpit.jpg" alt="Jalpit" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">J</div>
             </div>
@@ -2466,7 +2471,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/manthan.jpg" alt="Manthan" class="team-photo"
+              <img src="assets/team/manthan.jpg" alt="Manthan" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2480,7 +2485,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/neel.jpg" alt="Neel" class="team-photo"
+              <img src="assets/team/neel.jpg" alt="Neel" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">N</div>
             </div>
@@ -2494,7 +2499,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/meet.jpg" alt="Meet" class="team-photo"
+              <img src="assets/team/meet.jpg" alt="Meet" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2508,7 +2513,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/tisha.jpg" alt="Tisha" class="team-photo"
+              <img src="assets/team/tisha.jpg" alt="Tisha" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">T</div>
             </div>
@@ -2522,7 +2527,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/maitri.jpg" alt="Maitri" class="team-photo"
+              <img src="assets/team/maitri.jpg" alt="Maitri" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2536,7 +2541,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/akshat.jpg" alt="Akshat" class="team-photo"
+              <img src="assets/team/akshat.jpg" alt="Akshat" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">A</div>
             </div>
@@ -2550,7 +2555,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/jay-nirmal.jpg" alt="Jay Nirmal" class="team-photo"
+              <img src="assets/team/jay-nirmal.jpg" alt="Jay Nirmal" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">J</div>
             </div>
@@ -2564,7 +2569,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/neetika.jpg" alt="Neetika" class="team-photo"
+              <img src="assets/team/neetika.jpg" alt="Neetika" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">N</div>
             </div>
@@ -2578,7 +2583,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/mohammad.jpg" alt="Mohammed" class="team-photo"
+              <img src="assets/team/mohammad.jpg" alt="Mohammed" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">M</div>
             </div>
@@ -2592,7 +2597,7 @@
           </div>
           <div class="team-card">
             <div class="team-photo-wrap">
-              <img src="assets/team/durva.jpg" alt="Durva" class="team-photo"
+              <img src="assets/team/durva.jpg" alt="Durva" class="team-photo" loading="lazy" decoding="async" width="62" height="62"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
               <div class="team-photo-fallback">D</div>
             </div>
@@ -2613,22 +2618,22 @@
       <h2 class="section-title">Past Year Memories</h2>
       <div class="memories-grid">
         <div class="memory-photo-card">
-          <img src="past_year_pics/9.webp" alt="Keynote Address" onerror="this.style.display='none';">
+          <img src="past_year_pics/9.webp" alt="Keynote Address" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <img src="past_year_pics/1.webp" alt="Mentor Sessions" onerror="this.style.display='none';">
+          <img src="past_year_pics/1.webp" alt="Mentor Sessions" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <img src="past_year_pics/2.webp" alt="Prototype Lab" onerror="this.style.display='none';">
+          <img src="past_year_pics/2.webp" alt="Prototype Lab" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <img src="past_year_pics/4.webp" alt="Investor Panel" onerror="this.style.display='none';">
+          <img src="past_year_pics/4.webp" alt="Investor Panel" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <img src="past_year_pics/5.webp" alt="Grand Demo Day" onerror="this.style.display='none';">
+          <img src="past_year_pics/5.webp" alt="Grand Demo Day" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </div>
         <div class="memory-photo-card">
-          <img src="past_year_pics/6.webp" alt="Award Ceremony" onerror="this.style.display='none';">
+          <img src="past_year_pics/6.webp" alt="Award Ceremony" loading="lazy" decoding="async" onerror="this.style.display='none';">
         </div>
       </div>
     </section>
