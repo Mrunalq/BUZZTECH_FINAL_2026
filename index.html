@@ -277,7 +277,8 @@
 
     .hero-wordmark {
       display: block;
-      height: clamp(160px, 90vw, 220px);
+      height: clamp(120px, 16vw, 220px);
+      max-width: 92%;
       width: auto;
       margin: 0 auto 20px;
     }
@@ -1032,7 +1033,8 @@
     .rule-summary-wrap {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.35s ease;
+      transition: grid-template-rows 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: grid-template-rows;
     }
 
     .rule-summary-wrap>.rule-summary {
@@ -1405,6 +1407,11 @@
         align-items: flex-start;
       }
 
+      .hero-wordmark {
+        height: clamp(70px, 22vw, 130px);
+        max-width: 85%;
+      }
+
       .memories-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
@@ -1423,6 +1430,11 @@
       .btn-meet {
         padding: 6px 12px;
         font-size: 10px !important;
+      }
+
+      .hero-wordmark {
+        height: clamp(56px, 20vw, 100px);
+        max-width: 80%;
       }
     }
   </style>
@@ -2807,7 +2819,7 @@
     const MAX_LIFE = isMobile ? 700 : 950;
     const STEP_PX = isMobile ? 12 : 8;
     const MAX_DIST = isMobile ? 110 : 140;
-    const MAX_NODES = isMobile ? 45 : 85; // Increased for a more visible web-shoot effect
+    const MAX_NODES = isMobile ? 26 : 85; // Lowered on mobile — the connection loop below is O(n^2), so fewer nodes matters a lot for touch responsiveness
 
     // Weighted toward red + blue (the theme's core contrast), cyan/white only as light accents
     const COLORS = [
@@ -2820,7 +2832,7 @@
     ];
 
     function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2 for performance
+      const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 2); // Lower cap on mobile — cuts canvas fill-rate cost so taps stay responsive
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width * dpr;
@@ -2938,7 +2950,10 @@
 
       const len = webNodes.length;
 
-      // Draw Connections
+      // Draw Connections — skipped on mobile. This pairwise loop is O(n^2)
+      // and was the main thing competing with rule-card taps for the main
+      // thread, which is what made the accordion feel laggy on phones.
+      if (!isMobile) {
       for (let i = 0; i < len; i++) {
         for (let j = i + 1; j < len; j++) {
           const n1 = webNodes[i];
@@ -2962,6 +2977,7 @@
             ctx.stroke();
           }
         }
+      }
       }
 
       // Draw Particles
