@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BuzzTech 2.0 | SVIT Vasad Flagship Venture & Startup Summit</title>
 
-  <!-- Barlow for everything; Bangers reserved for large titles only -->
+  <!-- Barlow for everything; Teko reserved for large titles only -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Bangers&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Teko:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
   <style>
@@ -247,7 +247,7 @@
     }
 
     .article-header h1 {
-      font-family: 'Bangers', cursive;
+      font-family: 'Teko', sans-serif;
       font-weight: 700;
       font-size: clamp(28px, 5vw, 56px);
       letter-spacing: 1px;
@@ -353,11 +353,12 @@
       position: relative;
       z-index: 2;
       margin: 0 0 20px 0;
-      font-family: 'Bangers', cursive;
+      font-family: 'Teko', sans-serif;
+      font-weight: 600;
       font-size: clamp(1rem, 2.5vw, 1.3rem);
       text-transform: uppercase;
       letter-spacing: 2px;
-      background: linear-gradient(90deg, var(--spider-cyan), #ffffff 50%, var(--spider-cyan));
+      background: var(--spider-cyan);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -511,7 +512,8 @@
 
     /* Section Headers */
     .section-title {
-      font-family: 'Bangers', cursive;
+      font-family: 'Teko', sans-serif;
+      font-weight: 600;
       font-size: clamp(20px, 3vw, 30px);
       letter-spacing: 2px;
       margin: clamp(32px, 5vw, 50px) 0 clamp(16px, 2.5vw, 24px);
@@ -542,7 +544,7 @@
     /* Roadmap heading uses a cleaner sans-serif — the decorative serif font
        used elsewhere was hard to read at this size/spacing. */
     #roadmap .section-title {
-      font-family: 'Bangers', cursive;
+      font-family: 'Teko', sans-serif;
       font-weight: 800;
       font-size: clamp(24px, 3.6vw, 34px);
       letter-spacing: 0.5px;
@@ -801,7 +803,14 @@
       justify-content: space-between;
       gap: 16px;
       position: relative;
-      transition: all 0.25s ease;
+      overflow: hidden;
+      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      tap-highlight-color: transparent;
+      touch-action: manipulation;
+      outline: none;
+      user-select: none;
     }
 
     .rule-card::before {
@@ -812,7 +821,6 @@
       bottom: 0;
       width: 4px;
       background: linear-gradient(180deg, var(--spider-red) 0%, var(--spider-red-light) 55%, var(--spider-blue-light) 100%);
-      border-radius: 12px 0 0 12px;
     }
 
     .rule-card:hover {
@@ -876,6 +884,85 @@
       font-size: 14px;
       color: var(--text-muted);
       line-height: 1.4;
+    }
+
+    /* Structured rule content — sub-headings + bullet lists instead of
+       one long paragraph. Colors/fonts match the rest of the rule card. */
+    .rule-summary-structured {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rule-subsection:first-child {
+      margin-top: 0;
+    }
+
+    .rule-subheading {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--spider-cyan);
+      margin: 0 0 4px 0;
+      letter-spacing: 0.3px;
+    }
+
+    .rule-subintro {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin: 0 0 4px 0;
+    }
+
+    .rule-bullet-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .rule-bullet-list li {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .rule-bullet-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--spider-gold);
+    }
+
+    /* Smooth slide open/close — grid-template-rows animates from 0fr to 1fr,
+       which is GPU-friendly and needs no JS height measurement, so it stays
+       lag-free on both desktop and mobile. */
+    .rule-summary-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease;
+    }
+
+    .rule-summary-wrap>.rule-summary {
+      overflow: hidden;
+      min-height: 0;
+      margin-top: 0;
+    }
+
+    .rule-card.expanded .rule-summary-wrap {
+      grid-template-rows: 1fr;
+    }
+
+    .rule-card.expanded .rule-summary-wrap>.rule-summary {
+      margin-top: 6px;
+    }
+
+    .rule-card.expanded .rule-card-main {
+      align-items: flex-start;
     }
 
     /* Team Slider - Compact, Auto-Scrolling, GPU Accelerated */
@@ -1406,7 +1493,7 @@
             <div class="node-card">
               <div class="node-header-row">
                 <span class="node-stage-tag">Stage 1 • Problem Discovery</span>
-                <span class="node-duration">Days 01-08</span>
+                <span class="node-duration">TDS</span>
               </div>
               <h4>Origin: Pain-Point Discovery & Validation</h4>
             </div>
@@ -1420,7 +1507,7 @@
             <div class="node-card">
               <div class="node-header-row">
                 <span class="node-stage-tag">Stage 2 • Solution Architecture</span>
-                <span class="node-duration">Days 09–18</span>
+                <span class="node-duration">TDS</span>
               </div>
               <h4>Ideation & Pitch Architecture</h4>
             </div>
@@ -1434,54 +1521,11 @@
             <div class="node-card">
               <div class="node-header-row">
                 <span class="node-stage-tag">Stage 3 • Rapid Prototyping</span>
-                <span class="node-duration">Days 19–30</span>
+                <span class="node-duration">TDS</span>
               </div>
               <h4>MVP Lab & Hardware Prototyping</h4>
             </div>
           </div>
-
-          <!-- Node 04 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">04</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 4 • Financial Modeling</span>
-                <span class="node-duration">Days 31–38</span>
-              </div>
-              <h4>Business Mechanics & Go-To-Market</h4>
-            </div>
-          </div>
-
-          <!-- Node 05 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">05</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 5 • Investor Readiness</span>
-                <span class="node-duration">Days 39–46</span>
-              </div>
-              <h4>Pitch Deck Refinement & Dry Runs</h4>
-            </div>
-          </div>
-
-          <!-- Node 06 -->
-          <div class="spider-node-item">
-            <div class="node-anchor">
-              <span class="node-number">06</span>
-            </div>
-            <div class="node-card">
-              <div class="node-header-row">
-                <span class="node-stage-tag">Stage 6 • Pitch Arena</span>
-                <span class="node-duration">Days 47–50</span>
-              </div>
-              <h4>Grand Pitch Day Showcase</h4>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1499,11 +1543,41 @@
               <span class="rule-number-badge">RULE 01</span>
               <div class="rule-text-group">
                 <div class="rule-title-row">
-                  <h3 class="rule-title">Team Formation & Structure</h3>
+                  <h3 class="rule-title">Team Eligibility & Formation</h3>
                   <span class="rule-category-tag">Eligibility</span>
                 </div>
-                <p class="rule-summary">Teams must consist of 2–5 enrolled undergraduate/postgraduate members with a
-                  designated team leader. Interdisciplinary collaboration is strongly encouraged.</p>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">1.1 Team Composition</h4>
+                      <ul class="rule-bullet-list">
+                          <li>BUZZTECH 2.0 is open only to team-based participation.</li>
+                          <li>Each team must consist of either 2 or 4 members.</li>
+                          <li>Individual participation and teams of 3 members are not permitted.</li>
+                          <li>Each participant may be a member of only one team.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">1.2 Team Lead</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Each team must nominate one Team Lead who will serve as the primary point of contact with the Organizing Committee.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">1.3 Team Changes</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Team composition cannot be changed after registration without prior approval from the BUZZTECH 2.0 Organizing Committee.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">1.4 Track</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Each team must participate in one track only.</li>
+                          <li>A team cannot participate in multiple tracks.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1514,11 +1588,41 @@
               <span class="rule-number-badge">RULE 02</span>
               <div class="rule-text-group">
                 <div class="rule-title-row">
-                  <h3 class="rule-title">Originality & IP Protection</h3>
-                  <span class="rule-category-tag">IP Rights</span>
+                  <h3 class="rule-title">Registration</h3>
+                  <span class="rule-category-tag">Registration</span>
                 </div>
-                <p class="rule-summary">All solutions must be original work. Teams retain 100% ownership of their IP;
-                  any open-source resources used must be explicitly credited.</p>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">2.1 Registration Process</h4>
+                      <ul class="rule-bullet-list">
+                          <li>All teams must register through the official BUZZTECH 2.0 registration process within the announced registration period.</li>
+                          <li>Teams must provide all required information and documents during registration.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">2.2 Accuracy of Information</h4>
+                      <ul class="rule-bullet-list">
+                          <li>All information submitted during registration must be complete and accurate.</li>
+                          <li>Submission of false or misleading information may result in cancellation of registration or disqualification.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">2.3 Registration Deadline</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Registrations must be completed before the officially announced deadline.</li>
+                          <li>Late registrations will not be accepted unless explicitly permitted by the Organizing Committee.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">2.4 Official Communication</h4>
+                      <ul class="rule-bullet-list">
+                          <li>All official announcements, deadlines, instructions, and updates will be communicated through the official BUZZTECH 2.0 communication channels (email & whatsapp).</li>
+                          <li>Participants are responsible for keeping themselves informed of such announcements.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1529,11 +1633,45 @@
               <span class="rule-number-badge">RULE 03</span>
               <div class="rule-text-group">
                 <div class="rule-title-row">
-                  <h3 class="rule-title">Mandatory Sprint Check-ins</h3>
-                  <span class="rule-category-tag">Cohort</span>
+                  <h3 class="rule-title">Business Idea & Track Eligibility</h3>
+                  <span class="rule-category-tag">Business Idea</span>
                 </div>
-                <p class="rule-summary">80%+ attendance in weekly mentor syncs and milestone filing is mandatory to
-                  remain eligible for the Grand Pitch Day.</p>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">3.1 Business Idea</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Each team must participate with one original business idea.</li>
+                          <li>The proposed idea must have a clear product, service, or business model that can be developed and executed during the BUZZTECH 2.0 challenge.</li>
+                          <li>Teams must submit a brief description of their proposed business idea during registration.</li>
+                          <li>The business idea must comply with the eligibility and prohibited-category rules of BUZZTECH 2.0.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">3.2 Track Selection</h4>
+                        <p class="rule-subintro">BUZZTECH 2.0 will have the following tracks:</p>
+                      <ul class="rule-bullet-list">
+                          <li>Technology Startup Track – for ventures where technology, software, AI, hardware, digital platforms, or technological innovation is a core part of the product or service.</li>
+                          <li>Business Startup Track – for ventures based on a non-technology-first product, service, commerce, or business model.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">3.3 Track Allocation</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Each team must select one track only during registration.</li>
+                          <li>Teams must participate in the track that best represents the nature of their proposed venture.</li>
+                          <li>Teams may not participate in multiple tracks.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">3.4 Idea Changes</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams are expected to work on the business idea submitted during registration.</li>
+                          <li>Any major change in the core business idea or business model after registration must be communicated to and approved by the Organizing Committee.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1544,13 +1682,356 @@
               <span class="rule-number-badge">RULE 04</span>
               <div class="rule-text-group">
                 <div class="rule-title-row">
-                  <h3 class="rule-title">Demo Day Pitching Rules</h3>
-                  <span class="rule-category-tag">Grand Finale</span>
+                  <h3 class="rule-title">Prohibited Business Categories</h3>
+                  <span class="rule-category-tag">Restrictions</span>
                 </div>
-                <p class="rule-summary">Strictly timed 5-minute live pitch, followed by a 3-minute investor Q&A with a
-                  live working prototype demonstration.</p>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">4.1 Restricted Business Categories</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Businesses primarily engaged in the preparation, sale, delivery, or distribution of food or beverages are not eligible for BUZZTECH 2.0.</li>
+                          <li>Business ideas involving illegal activities, prohibited products, or services are not permitted.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">4.2 Unethical Business Models</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Business ideas involving fraud, deception, misleading claims, or unethical practices will not be accepted.</li>
+                          <li>Any business model that violates applicable laws, regulations, or institutional policies is ineligible.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">4.3 Technology-Based Solutions</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Technology-based solutions serving restricted industries may be considered eligible if their primary business model is technology-driven and does not involve the direct sale, preparation, or distribution of restricted products.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">4.4 Eligibility Review</h4>
+                      <ul class="rule-bullet-list">
+                          <li>The BUZZTECH 2.0 Organizing Committee reserves the right to review the eligibility of any proposed business idea.</li>
+                          <li>If a business is found to violate these rules after registration, the team may be removed from the competition.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+
+          <!-- Rule 05 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 05</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">50-Day Challenge & Participation Commitment</h3>
+                  <span class="rule-category-tag">Commitment</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">5.1 50-Day Challenge</h4>
+                      <ul class="rule-bullet-list">
+                          <li>BUZZTECH 2.0 is a 50-day entrepreneurship challenge in which teams are expected to develop and execute their registered business idea.</li>
+                          <li>Teams are expected to work towards real-world validation, customer engagement, and measurable business progress during the challenge.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">5.2 Active Participation</h4>
+                      <ul class="rule-bullet-list">
+                          <li>All team members are expected to actively contribute throughout the 50-day challenge.</li>
+                          <li>Teams must complete the official activities, milestones, submissions, and reviews within the specified timelines.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">5.3 Business Execution</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams are expected to make genuine efforts towards building, marketing, selling, validating, or otherwise executing their business idea.</li>
+                          <li>All business activities and progress must be genuine and accurately represented.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">5.4 Withdrawal</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams wishing to withdraw must inform the BUZZTECH 2.0 Organizing Committee.</li>
+                          <li>Unjustified withdrawal or prolonged inactivity may result in elimination from the challenge.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule 06 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 06</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">Attendance & Academic Responsibilities</h3>
+                  <span class="rule-category-tag">Attendance</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">6.1 Academic Attendance</h4>
+                      <ul class="rule-bullet-list">
+                          <li>No additional academic attendance will be provided for BUZZTECH 2.0-related work or activities.</li>
+                          <li>Participants must not miss regular lectures or academic commitments for BUZZTECH 2.0 work.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">6.2 BUZZTECH Activities</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Attendance may be considered only for official BUZZTECH 2.0 activities specifically notified by the Organizing Committee.</li>
+                          <li>Participants are expected to manage their academic responsibilities alongside their BUZZTECH 2.0 participation.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">6.3 Activities During Lecture Hours</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams must not conduct BUZZTECH 2.0 business activities, meetings, customer visits, marketing activities, or development work during scheduled lecture hours.</li>
+                          <li>Teams found violating this rule may be subject to appropriate action by the Organizing Committee.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule 07 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 07</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">Seed Funding & Expense Rules</h3>
+                  <span class="rule-category-tag">Funding</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">7.1 Funding</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Seed funding, if provided, is not guaranteed and is subject to the approval of the BUZZTECH 2.0 Organizing Committee.</li>
+                          <li>The amount and allocation of funding will be determined by the Organizing Committee based on the applicable criteria.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">7.2 Use of Funds</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Seed funding must be used only for legitimate expenses directly related to the registered business venture.</li>
+                          <li>Personal expenses or unrelated purchases are not eligible for reimbursement.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">7.3 Expense Documentation</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams must maintain valid bills, invoices, receipts, or other acceptable proof for funded expenses.</li>
+                          <li>The Organizing Committee may verify submitted expenses and supporting documents at any stage.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">7.4 Misuse of Funds</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Fake bills, fraudulent documents, or misuse of funds may result in disqualification and recovery of the misused amount.</li>
+                          <li>Any unused seed funding must be returned as per the instructions of the Organizing Committee.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule 08 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 08</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">Progress Reporting & Documentation</h3>
+                  <span class="rule-category-tag">Reporting</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">8.1 Weekly Progress Updates</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Each team must submit weekly progress updates through the official BUZZTECH 2.0 process.</li>
+                          <li>Updates must briefly include the work completed, current progress, and key developments during the week.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">8.2 Supporting Proof</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams must maintain authentic records or supporting proof of their business activities, customer interactions, sales, expenses, and other relevant progress.</li>
+                          <li>The Organizing Committee may request supporting proof at any stage of the challenge.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">8.3 Missed Updates</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Failure to submit two consecutive mandatory progress updates without an approved reason may result in elimination from BUZZTECH 2.0.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule 09 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 09</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">Mentor, Expert & Review Sessions</h3>
+                  <span class="rule-category-tag">Mentorship</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">9.1 Official Sessions</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams must attend official mentor, expert, review, and industry interaction sessions as communicated by the Organizing Committee.</li>
+                          <li>Attendance may be mandatory for sessions specifically designated by the Committee.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">9.2 Participation</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams are expected to come prepared with relevant business progress, updates, and questions for scheduled sessions.</li>
+                          <li>Teams must follow the instructions and timelines communicated for each session.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">9.3 Review & Feedback</h4>
+                      <ul class="rule-bullet-list">
+                          <li>The Organizing Committee, mentors, or experts may review team progress and provide feedback or recommendations during the 50-day challenge.</li>
+                          <li>Teams are expected to consider relevant feedback and incorporate improvements where appropriate.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule 10 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 10</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">Judging & Evaluation Criteria</h3>
+                  <span class="rule-category-tag">Evaluation</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">10.1 Evaluation</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams will be evaluated based on their performance and progress throughout the 50-day challenge.</li>
+                          <li>Evaluation will consider both the business execution and the team's ability to present and demonstrate its venture.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">10.2 Evidence-Based Evaluation</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Teams must provide authentic data, records, and supporting evidence wherever required to substantiate their progress and claims.</li>
+                          <li>Teams must provide genuine and verifiable information regarding their customers, sales, revenue, traction, partnerships, and other business claims. Any fabrication or deliberate misrepresentation may result in disqualification.</li>
+                          <li>Claims regarding customers, sales, revenue, partnerships, or traction may be verified by the Organizing Committee or judges.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">10.3 Final Decision</h4>
+                      <ul class="rule-bullet-list">
+                          <li>The final scores and rankings will be determined by the appointed judging panel based on the announced evaluation criteria.</li>
+                          <li>The decision of the judging panel shall be final and binding.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule 11 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 11</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">Final Submission & Grand Finale</h3>
+                  <span class="rule-category-tag">Grand Finale</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">11.1 Final Submission</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Each team must submit all required materials within the officially announced deadline.</li>
+                          <li>The final submission must accurately represent the team's 50-day business journey, achievements, and current status.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">11.2 Final Presentation</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Shortlisted teams will present their venture before the judging panel during the Grand Finale.</li>
+                          <li>Teams must adhere to the presentation format, time limit, and guidelines communicated by the Organizing Committee.</li>
+                          <li>All information presented must be accurate and verifiable.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">11.3 Submission Deadline</h4>
+                      <ul class="rule-bullet-list">
+                          <li>Failure to submit the required final materials within the specified deadline may result in elimination from the final evaluation.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule 12 -->
+          <div class="rule-card">
+            <div class="rule-card-main">
+              <span class="rule-number-badge">RULE 12</span>
+              <div class="rule-text-group">
+                <div class="rule-title-row">
+                  <h3 class="rule-title">Organizer Rights & Important Notes</h3>
+                  <span class="rule-category-tag">Organizer Rights</span>
+                </div>
+                <div class="rule-summary-wrap">
+                  <div class="rule-summary rule-summary-structured">
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">12.1 Organizer Rights</h4>
+                      <ul class="rule-bullet-list">
+                          <li>The BUZZTECH 2.0 Organizing Committee reserves the right to make reasonable changes to the schedule, venue, timelines, or operational procedures when necessary.</li>
+                          <li>Any significant changes affecting participants will be communicated through the official BUZZTECH 2.0 communication channels.</li>
+                          <li>The decision of the BUZZTECH 2.0 Organizing Committee and appointed judging panel, within their respective areas of authority, shall be final and binding.</li>
+                      </ul>
+                    </div>
+                    <div class="rule-subsection">
+                      <h4 class="rule-subheading">12.2 Important Notes</h4>
+                      <ul class="rule-bullet-list">
+                          <li><strong>Intellectual Property:</strong> All intellectual property developed during BUZZTECH 2.0 remains the property of the respective participating team unless otherwise agreed in writing.</li>
+                          <li><strong>Internal Team Disputes:</strong> Internal team disputes shall first be reviewed by the BUZZTECH 2.0 Organizing Committee before any further administrative escalation.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           </div>
 
         </div>
@@ -1738,8 +2219,8 @@
             </div>
             <h4>Meet</h4>
             <span class="team-role">SMM Team</span>
-            <a href="https://linkedin.com/in/meet" target="_blank" class="team-linkedin" aria-label="Meet LinkedIn"><svg
-                viewBox="0 0 24 24" fill="currentColor">
+            <a  class="team-linkedin"
+              aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg></a>
@@ -2019,8 +2500,8 @@
             </div>
             <h4>Meet</h4>
             <span class="team-role">SMM Team</span>
-            <a href="https://linkedin.com/in/meet" target="_blank" class="team-linkedin" aria-label="Meet LinkedIn"><svg
-                viewBox="0 0 24 24" fill="currentColor">
+            <a class="team-linkedin"
+              aria-label="Tisha LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg></a>
@@ -2417,6 +2898,34 @@
     }
 
     requestAnimationFrame(animate);
+
+    // Rulebook accordion — click a rule card to slide its details open/closed.
+    // Each card toggles independently; no visual styling touched, only the
+    // 'expanded' class which the CSS above uses to animate the slide.
+    (function () {
+      const ruleGrid = document.getElementById('ruleGrid');
+      if (!ruleGrid) return;
+
+      const cards = ruleGrid.querySelectorAll('.rule-card');
+      cards.forEach((card) => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-expanded', 'false');
+
+        const toggle = () => {
+          const isExpanded = card.classList.toggle('expanded');
+          card.setAttribute('aria-expanded', String(isExpanded));
+        };
+
+        card.addEventListener('click', toggle);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
+    })();
   </script>
 </body>
 
