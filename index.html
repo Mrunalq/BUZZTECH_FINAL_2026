@@ -1506,11 +1506,13 @@
         gap: 6px;
       }
 
-      /* Tagline is dropped here (not just truncated) to free up enough
-         width for the title to sit comfortably next to two full-text
-         buttons instead of getting clipped. */
+      /* Tagline stays visible but shrinks and auto-truncates (via its
+         existing overflow/ellipsis rule) so it never forces the title or
+         buttons off-screen — it just shows as much as fits. */
       .tagline-nav {
-        display: none;
+        font-size: 8px;
+        letter-spacing: 1px;
+        margin-top: 2px;
       }
 
       .logo-icon-svg {
