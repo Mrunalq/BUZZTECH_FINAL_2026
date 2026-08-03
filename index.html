@@ -9,12 +9,25 @@
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="BUZZTECH_LOGO.webp">
 
-  <!-- Barlow for everything; Teko reserved for large titles only -->
+  <!-- Preload the hero wordmark — it's the largest above-the-fold element (LCP) -->
+  <link rel="preload" as="image" href="Buzztechtextlogo1.svg" fetchpriority="high">
+
+  <!-- Barlow for everything; Teko reserved for large titles only.
+       Weight list trimmed to only the weights actually referenced in the CSS
+       below (Barlow 300 and Teko 400/500 were never used), so the same look
+       loads with fewer font files. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Teko:wght@600;700;800&display=swap">
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Teko:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Teko:wght@600;700;800&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Teko:wght@600;700;800&display=swap"
+      rel="stylesheet">
+  </noscript>
   
   <style>
     :root {
@@ -1587,7 +1600,7 @@
   <header>
     <a href="#" class="brand" id="brandHome" aria-label="Back to top">
       <div class="logo-icon-svg">
-        <img src="BUZZTECH_LOGO.webp" alt="BuzzTech 2.0 logo" width="44" height="44" decoding="async">
+        <img src="BUZZTECH_LOGO.webp" alt="BuzzTech 2.0 logo" width="44" height="44" decoding="async" fetchpriority="high">
       </div>
       <div class="logo-text">
         <div class="logo">BuzzTech <span>2.0</span></div>
@@ -1624,20 +1637,20 @@
     <span class="category-badge">Venture Sprint • SVIT Vasad</span>
 
     <article class="article-header">
-      <img src="Buzztechtextlogo1.svg" alt="BuzzTech" class="hero-wordmark">
+      <img src="Buzztechtextlogo1.svg" alt="BuzzTech" class="hero-wordmark" decoding="async" fetchpriority="high">
 
       <div class="partner-logos-row">
         <div class="partner-logo-item">
-          <img src="cell_logo/ssip_cell.webp" alt="SSIP Cell logo" loading="lazy">
+          <img src="cell_logo/ssip_cell.webp" alt="SSIP Cell logo" decoding="async">
         </div>
         <div class="partner-logo-item">
-          <img src="cell_logo/ric_cell.webp" alt="Research & Innovation Centre logo" loading="lazy">
+          <img src="cell_logo/ric_cell.webp" alt="Research & Innovation Centre logo" decoding="async">
         </div>
         <div class="partner-logo-item">
-          <img src="cell_logo/iic_cell.webp" alt="Institution's Innovation Council logo" loading="lazy">
+          <img src="cell_logo/iic_cell.webp" alt="Institution's Innovation Council logo" decoding="async">
         </div>
         <div class="partner-logo-item">
-          <img src="cell_logo/svit_logo.webp" alt="SVIT logo" loading="lazy">
+          <img src="cell_logo/svit_logo.webp" alt="SVIT logo" decoding="async">
         </div>
       </div>
 
@@ -2957,6 +2970,12 @@
     }
 
     // Performance Optimized Cyber Web-Lattice Canvas Engine
+    // Wrapped in a function and started once the page has settled (see
+    // initWebEngine scheduling below) — it only ever draws in response to
+    // pointer/scroll input, so nothing visible changes; it just stops this
+    // setup work from competing with the initial page paint for the main
+    // thread, which is what was pushing out FCP/LCP.
+    function initWebEngine() {
     const canvas = document.getElementById('webCanvas');
     const ctx = canvas.getContext('2d', {alpha: true});
 
@@ -3152,6 +3171,15 @@
     }
 
     requestAnimationFrame(animate);
+    } // end initWebEngine
+
+    // Start the background canvas engine once the browser is idle (or after
+    // a short fallback delay) so it never competes with first paint / LCP.
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initWebEngine, {timeout: 1500});
+    } else {
+      window.addEventListener('load', () => setTimeout(initWebEngine, 200));
+    }
 
     // Rulebook accordion — click a rule card to slide its details open/closed.
     // Only one card stays open at a time: opening a card closes whichever
