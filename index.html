@@ -1502,15 +1502,21 @@
         gap: 6px;
       }
 
+      /* Hide the tagline and the MEET/REGISTER text labels (icon-only
+         buttons below) so the full "BuzzTech 2.0" title always has room
+         to render without being clipped by ellipsis. */
       .tagline-nav {
-        max-width: 120px;
+        display: none;
+      }
+
+      .btn-label {
+        display: none;
       }
 
       .btn-meet,
       .btn-register {
-        padding: 6px 10px;
-        font-size: 9px !important;
-        gap: 5px;
+        padding: 8px;
+        gap: 0;
       }
 
       .hero-wordmark {
@@ -1519,15 +1525,11 @@
       }
     }
 
-    /* Very narrow phones (e.g. small Android/iPhone SE widths) — drop the
-       tagline and shrink the logo icon so the MEET and REGISTER buttons
-       always have room to render in full instead of being clipped by the
-       body's overflow-x: hidden. The BuzzTech title itself stays large. */
-    @media (max-width: 380px) {
-      .tagline-nav {
-        display: none;
-      }
-
+    /* Very narrow phones (e.g. small Android/iPhone SE widths) — shrink the
+       logo icon a little further so the title still has full breathing
+       room; the tagline is already hidden and buttons are icon-only from
+       the 480px breakpoint above, so the BuzzTech title never gets clipped. */
+    @media (max-width: 360px) {
       .logo {
         font-size: 18px;
       }
@@ -1535,13 +1537,6 @@
       .logo-icon-svg {
         width: 32px;
         height: 32px;
-      }
-
-      .btn-meet,
-      .btn-register {
-        padding: 6px 8px;
-        font-size: 8px !important;
-        gap: 4px;
       }
     }
   </style>
@@ -1571,19 +1566,19 @@
         <li><a href="#rulebook">Rulebook</a></li>
         <li><a href="#team">Team</a></li>
       </ul>
-      <a href="https://zoom.us/j/YOUR_MEETING_ID" target="_blank" class="btn-meet">
+      <a href="https://zoom.us/j/YOUR_MEETING_ID" target="_blank" class="btn-meet" aria-label="Join Meet">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
           <path
             d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
         </svg>
-        MEET
+        <span class="btn-label">MEET</span>
       </a>
-      <a href="https://forms.google.com/YOUR_FORM_ID" target="_blank" class="btn-register">
+      <a href="https://forms.google.com/YOUR_FORM_ID" target="_blank" class="btn-register" aria-label="Register">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
           <path
             d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-1.03 14L7 13.06l1.41-1.41 2.56 2.55 5.59-5.59L18 10.03 10.97 17z" />
         </svg>
-        REGISTER
+        <span class="btn-label">REGISTER</span>
       </a>
     </div>
   </header>
