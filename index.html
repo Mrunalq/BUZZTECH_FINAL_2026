@@ -1434,11 +1434,11 @@
       }
 
       .nav-right {
-        gap: 10px;
+        gap: 8px;
       }
 
       .brand {
-        gap: 8px;
+        gap: 6px;
       }
 
       .logo-icon-svg {
@@ -1447,7 +1447,7 @@
       }
 
       .logo {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .spider-node-timeline::before {
@@ -1494,23 +1494,45 @@
       }
 
       header {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding-left: 10px;
+        padding-right: 10px;
       }
 
       .nav-right {
         gap: 6px;
       }
 
+      .brand {
+        gap: 6px;
+      }
+
+      /* Tagline is dropped here (not just truncated) to free up enough
+         width for the title to sit comfortably next to two full-text
+         buttons instead of getting clipped. */
       .tagline-nav {
-        max-width: 120px;
+        display: none;
+      }
+
+      .logo-icon-svg {
+        width: 34px;
+        height: 34px;
+      }
+
+      .logo {
+        font-size: 16px;
       }
 
       .btn-meet,
       .btn-register {
-        padding: 6px 10px;
+        padding: 5px 8px;
         font-size: 9px !important;
-        gap: 5px;
+        gap: 4px;
+      }
+
+      .btn-meet svg,
+      .btn-register svg {
+        width: 10px;
+        height: 10px;
       }
 
       .hero-wordmark {
@@ -1519,29 +1541,37 @@
       }
     }
 
-    /* Very narrow phones (e.g. small Android/iPhone SE widths) — drop the
-       tagline and shrink the logo icon so the MEET and REGISTER buttons
-       always have room to render in full instead of being clipped by the
-       body's overflow-x: hidden. The BuzzTech title itself stays large. */
-    @media (max-width: 380px) {
-      .tagline-nav {
-        display: none;
+    /* Very narrow phones (e.g. small Android/iPhone SE widths) — tighten
+       everything a little further so MEET and REGISTER keep their text
+       labels and the BuzzTech title still fits without being clipped. */
+    @media (max-width: 360px) {
+      header {
+        padding-left: 8px;
+        padding-right: 8px;
       }
 
-      .logo {
-        font-size: 18px;
+      .nav-right {
+        gap: 4px;
+      }
+
+      .brand {
+        gap: 5px;
       }
 
       .logo-icon-svg {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
+      }
+
+      .logo {
+        font-size: 14px;
       }
 
       .btn-meet,
       .btn-register {
-        padding: 6px 8px;
+        padding: 4px 6px;
         font-size: 8px !important;
-        gap: 4px;
+        gap: 3px;
       }
     }
   </style>
