@@ -28,8 +28,6 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Teko:wght@600;700;800&display=swap"
       rel="stylesheet">
   </noscript>
-
-  <script defer src="/_vercel/insights/script.js"></script>
   
   <style>
     :root {
@@ -899,6 +897,45 @@
       background: var(--bg-card-hover);
       border-color: var(--border-crimson);
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Roadmap stage auto-marked as done once its date has passed
+       (toggled purely by JS adding/removing .is-complete — see script
+       at the bottom of the page). Additive only: every rule below is
+       scoped under .is-complete, so default/hover states above are
+       untouched for stages still upcoming. */
+    .spider-node-item.is-complete .node-anchor {
+      border-color: #22C55E;
+      background: rgba(34, 197, 94, 0.15);
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.35);
+    }
+
+    .spider-node-item.is-complete .node-anchor::after {
+      border-color: rgba(34, 197, 94, 0.6);
+      animation: none;
+    }
+
+    .spider-node-item.is-complete .node-number {
+      color: #22C55E;
+    }
+
+    .spider-node-item.is-complete .node-card {
+      border-color: rgba(34, 197, 94, 0.35);
+    }
+
+    .spider-node-item.is-complete .node-card::before {
+      background: linear-gradient(90deg, #16A34A, #22C55E 60%, #4ADE80);
+    }
+
+    .spider-node-item.is-complete .node-duration {
+      color: #22C55E;
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    .spider-node-item.is-complete .node-duration::after {
+      content: '  •  DONE';
+      font-weight: 700;
     }
 
     /* Interactive Rulebook (card format) */
@@ -2944,6 +2981,60 @@
 
     updateCountdown();
     const timerInterval = setInterval(updateCountdown, 1000);
+
+    // Sprint Trajectory Roadmap — auto-complete stages once their date passes.
+    // Reads whatever date text is already printed in each stage's
+    // .node-duration badge ("3 - 7 AUG", "10 AUG", "TBA" ...) instead of a
+    // hardcoded list, so Stage 4/5 need zero extra code once their real
+    // dates replace "TBA" — this same logic picks them up automatically.
+    // All dates are read as 2026. Cheap (5 nodes, runs once on load), so it
+    // has no effect on LCP.
+    (function () {
+      const roadmap = document.getElementById('spiderRoadmap');
+      if (!roadmap) return;
+
+      const EVENT_YEAR = 2026;
+      const MONTHS = {
+        jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+        jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+      };
+
+      // Matches "3 - 7 AUG", "10 AUG", "13 aug", etc. — the second day (end
+      // of a range) is optional; a single date has no range at all.
+      const DATE_PATTERN = /(\d{1,2})\s*(?:[-–]\s*(\d{1,2}))?\s*([A-Za-z]{3,})/;
+
+      function parseStageEndDate(text) {
+        const match = text.match(DATE_PATTERN);
+        if (!match) return null;
+
+        const month = MONTHS[match[3].slice(0, 3).toLowerCase()];
+        if (month === undefined) return null;
+
+        const day = parseInt(match[2] || match[1], 10);
+        if (!day) return null;
+
+        return new Date(EVENT_YEAR, month, day, 23, 59, 59);
+      }
+
+      function markCompletedStages() {
+        const now = new Date();
+
+        roadmap.querySelectorAll('.spider-node-item').forEach((item) => {
+          const durationEl = item.querySelector('.node-duration');
+          if (!durationEl) return;
+
+          const text = durationEl.textContent.trim();
+          if (!text || /^tba$/i.test(text)) return; // not announced yet — nothing to compare
+
+          const endDate = parseStageEndDate(text);
+          if (endDate && now > endDate) {
+            item.classList.add('is-complete');
+          }
+        });
+      }
+
+      markCompletedStages();
+    })();
 
     // Mobile Navigation Controls
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
